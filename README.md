@@ -25,20 +25,22 @@ Show the metadata for one dataset.
 
 All datasets are provided as `csv` files, so they can be easily used for your own projects.
 
+
+
 ## Data Format
 
 Four files are provided for each dataset.
 
-| file          | description                                                  |
-| ------------- | ------------------------------------------------------------ |
-| enzymes.csv   | Name, Sequence and other properties                          |
-| chemicals.csv |                                                              |
-| activity.csv  | raw values from literature                                   |
-| metadata.json | the original data collection strategy, modeling strategy, and enzyme catalysis issues to be explored |
+| file            | description                                                  |
+| --------------- | ------------------------------------------------------------ |
+| `enzymes.csv`   | Name, Sequence and other properties                          |
+| `chemicals.csv` |                                                              |
+| `activity.csv`  | raw values from literature                                   |
+| `metadata.json` | the original data collection strategy, modeling strategy, and enzyme catalysis issues to be explored |
 
 ## Metadata description
 
-This repo not only focuses on the data itself, but also focuses on the original data collection strategy, modeling strategy, and enzyme catalysis issues to be explored. The definition of metadata.json is listed in the table below. It is mainly divided into four categories: basic information, experiments, data, and models. One could call the function to show the help.
+This repository not only focuses on the data itself, but also focuses on the original data collection strategy, modeling strategy, and enzyme catalysis issues to be explored. The definition of `metadata.json` is listed in the table below. It is mainly divided into four categories: basic information, experiments, data, and models. One could call the function to show the help.
 
 ```python
 
