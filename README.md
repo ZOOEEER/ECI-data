@@ -3,33 +3,34 @@ ECI stands for Enzyme-Chemical Interaction. The problem formulation is as below:
 
 ![problem_formulation](media\problem_formulation.png)
 
-Datasets suitable for ECI tasks come from the literature performing high-throughput experiments or large-scale characterization.
+**The high goal of ECI is to develop models which could use data of the activity of multiple compounds on related enzymes to enhance predictions of the activity of these compounds on the focused enzyme.** 
 
-**The high goal of ECI is to develop models which could use data of the activity of multiple compounds on related enzymes to enhance predictions of the activity of these compounds on the focused enzyme.** The problem formulation of ECI is similar to drug-target interaction(DTI), but there are some significant differences between the two:  DTI is a matrix completion problem where the problem is information insufficiency. ECI is a matrix factorization problem where the problem is information overload.
+The problem formulation of ECI is similar to drug-target interaction(DTI), but there are some significant differences between the two:  DTI is a matrix completion problem where the problem is information insufficiency. ECI is a matrix factorization problem where the problem is information overload.
+
+The repository contain datasets suitable for ECI tasks come from the literature performing high-throughput experiments or large-scale characterization. It also contains the data curation codes and useful tools for biological and chemical data collation and text and image processing.
 
 
 
 ## Usage
 
-Show all the datasets' information.
-
-```python
-
-```
-
-Show the statistics for one dataset.
-
-```python
-
-```
-
 Show the meta data for one dataset.
 
 ```python
-
+python main.py -m [dataset_name]
 ```
 
-All datasets are provided as `csv` files, so they can be easily used for your own projects.
+
+
+# File Organization
+
+Refer to the `tree.txt` for details.
+
+| directory | description                                                  |
+| --------- | ------------------------------------------------------------ |
+| datasets  | the *pure* datasets, with the four classical files listed in the **Data Format** part. |
+| process   | parse functions, the raw data files and the *long* datasets. In each datasets, the `enzymes_long.csv` and `chemicals_long.csv` are provided, if available. In the two files, the descriptors for enzymes and chemicals from the original paper are provided for reproducing the data analysis in the original paper. |
+| util      | utility functions for data processing.                       |
+| media     | Media files used in `README.md`.                             |
 
 
 
@@ -46,56 +47,64 @@ Four files are provided for each dataset.
 
 ## Metadata description
 
-This repository not only focuses on the data itself, but also focuses on the original data collection strategy, modeling strategy, and enzyme catalysis issues to be explored. The definition of `metadata.json` is listed in the table below. It is mainly divided into four categories: basic information, experiments, data, and models. One could call the function to show the help.
+This repository not only focuses on the data itself, but also focuses on the scientific or engineering issues to be explored, the original data collection strategy and modeling strategy. The definition of each entry is listed in `util\metadata.json` . And the `metadata.json` in each dataset is edited manually after carefully reading the original paper.
 
-```python
+The entries of meta data could be divided into five categories.
 
-```
-
-
-
-| #    |      |      |
-| ---- | ---- | ---- |
-| 1    |      |      |
-| 2    |      |      |
-| 3    |      |      |
-| 4    |      |      |
-| 5    |      |      |
-| 6    |      |      |
-| 7    |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
+| Type       | Description                                                  |
+| ---------- | ------------------------------------------------------------ |
+| basic      | Basic information of the literature, the enzymes family, the substrate library and the activity definition. |
+| statistic  | Statistics calculated from the data tables.                  |
+| experiment | Experimental details of the enzymes' production and activity assay. |
+| model      | Model constructed in the original paper to rationalize the experimental results |
+| process    | data process implemented here                                |
 
 
 
 ## Datasets
 
+Here are 0 datasets now. Run the code to make the statistical table below, as the `statistic.csv` file.
+
+```
+python main.py -s
+```
+
+| Dataset | Description | #enzymes | #chemicals | #activity |
+| ------- | ----------- | -------- | ---------- | --------- |
+|         |             |          |            |           |
+
 
 
 ## Data Curation
 
+We recommend that you install the python packages by conda. And then delete all the files in datasets directory.
 
+```
+conda create -n eci_data python=3.9
+conda install --yes --file requirements
+```
+
+To reproduce the data processing.
+
+```shell
+python main.py -a
+```
+
+For a new dataset, run the code to generate the directory and  `parse_[dataset_name].py`  and `metadata.json` files.
+
+```shell
+python main.py -n [dataset_name]
+```
+
+ After collecting the raw data files and editing the `.py` file, run
+
+```
+python main.py -n [dataset_name]
+```
+
+The `main.py` will call the `parse()` function in the `parse_[dataset_name].py` to curate the data. One could ensure the `parse() `function will return three `pandas.DataFrame` objects for `main.py` to generate the three files in `datasets`.
+
+As a text file, one could edit `metadata.json` at any moment.
 
 
 

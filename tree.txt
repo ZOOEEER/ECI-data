@@ -1,0 +1,25 @@
+
+.
+|   .gitignore
+|   LICENSE
+|   README.md
+|   requirements.txt
+|   tree.txt
+|   
++---datasets
+|   \---esterase
++---media
+|       problem_formulation.png
+|       
++---process
+|   |   parse_esterase.py
+|   |   
+|   \---esterase
+\---util
+    |   main.py
+    |   util_file.py
+    |   __init__.py
+    |   
+    \---__pycache__
+            util_file.cpython-39.pyc
+            
