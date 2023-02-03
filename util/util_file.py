@@ -3,9 +3,11 @@ Deal with files and paths.
 """
 
 import os
+# import sys
 import shutil
 import json
 
+# sys.path.append(os.path.realpath(__file__))
 
 # ##############
 #
@@ -26,11 +28,14 @@ def _getfilename(file: str) -> str:
         "metadata_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "metadata.json"),
         "metadata_dataset": "metadata.json",
         "parse_func_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "parse_template.py"),
-        "parse_func_dataset": "parse_{}.py"
+        "parse_func_dataset": "parse_{}.py",
+        "enzymes": "enzymes.csv",
+        "chemicals": "chemicals.csv",
+        "activity": "activity.csv",
     }[file]
 
-def _copyfile(source:str, target:str) -> None:
-    if not os.path.exists(target):
+def _copyfile(source:str, target:str, rewrite:bool = False) -> None:
+    if not os.path.exists(target) or rewrite:
         try:
           shutil.copy(source, target)
         except IOError as e:
@@ -39,14 +44,14 @@ def _copyfile(source:str, target:str) -> None:
             print("Unexpected error:", sys.exc_info())
     return
 
-def makeparser(dir_parse_func:str, dataset_name:str) -> str:
+def makeparser(dir_parse_func:str, dataset_name:str, rewrite:bool = False) -> str:
     source = _getfilename("parse_func_template")
 
     assert os.path.exists(source)
     assert os.path.exists(dir_parse_func)
 
     path = os.path.join(dir_parse_func, _getfilename("parse_func_dataset").format(dataset_name))
-    _copyfile(source, path)
+    _copyfile(source, path, rewrite)
     return path
 
 
@@ -59,6 +64,10 @@ def makemeta(dir_metadata:str, dataset_name:str) -> str:
     path = os.path.join(dir_metadata, _getfilename("metadata_dataset").format(dataset_name))
     _copyfile(source, path)
     return path
+
+def makeparsemodule(path: str) -> str:
+    return path.replace(".\\", "").replace("\\", ".").replace(".py","")
+
 
 # ##############
 #
@@ -144,3 +153,14 @@ def writeparse_func() -> None:
 
 if __name__ == "__main__":
     writemeta()
+
+# ##############
+#
+# Test
+#
+# ###############
+
+# def test_makeparsemodule():
+#     path = "./process/parse_esterase.py"
+#     module = makeparsemodule(path)
+#     print(module)

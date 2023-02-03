@@ -84,12 +84,6 @@ conda create -n eci_data python=3.9
 conda install --yes --file requirements
 ```
 
-To reproduce the data processing.
-
-```shell
-python main.py -a
-```
-
 For a new dataset, run the code to generate the directory and  `parse_[dataset_name].py`  and `metadata.json` files.
 
 ```shell
