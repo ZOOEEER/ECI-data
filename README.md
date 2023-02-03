@@ -96,7 +96,7 @@ python main.py -n [dataset_name]
 python main.py -n [dataset_name]
 ```
 
-The `main.py` will call the `parse()` function in the `parse_[dataset_name].py` to curate the data. One could ensure the `parse() `function will return three `pandas.DataFrame` objects for `main.py` to generate the three files in `datasets`.
+The `main.py` will call the `parse()` function in the `parse_[dataset_name].py` to curate the data. Feel free to change the code in `parse_[dataset_name].py` and output finally the desired files.
 
 As a text file, one could edit `metadata.json` at any moment.
 
