@@ -7,62 +7,64 @@ import shutil
 import json
 
 
-def makedir(dir_paths:dict, dataset_name:str) -> dict:
-    """
-    given the dataset_name, 
-    make the dir if not exists,
-    return the dict.
-    """
-    assert "datasets" in dir_paths.keys()
-    assert os.path.exists(dir_paths["datasets"])
+# ##############
+#
+# Deal with Dir
+#
+# ###############
 
-    assert "process" in dir_paths.keys()
-    assert os.path.exists(dir_paths["process"])
+def makedir(dir_dataset:str, dataset_name:str) -> str:
+    assert os.path.exists(dir_dataset)
+    path = os.path.join(dir_dataset, dataset_name)
+    if not os.path.exists(path):
+        os.mkdir(path)
 
-    dataset_path = {}
-    for dir_name in ["datasets", "process"]:
+    return path
 
-        path = os.path.join(dir_paths[dir_name], dataset_name)
-        if not os.path.exists(path):
-            os.mkdir(path)
-        dataset_path[dir_name] = path
+def _getfilename(file: str) -> str:
+    return {
+        "metadata_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "metadata.json"),
+        "metadata_dataset": "metadata.json",
+        "parse_func_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "parse_template.py"),
+        "parse_func_dataset": "parse_{}.py"
+    }[file]
 
-    return dataset_path
-
-def makeparser(dir_paths:dict, dataset_name:str) -> str:
-    """
-    given the dataset_name, 
-    make the parser.py if not exists,
-    return the path to the parser.py
-    """
-    assert "util" in dir_paths.keys()
-    assert os.path.exists(dir_paths["util"])
-
-    dataset_parser = os.path.join(dir_paths["util"], f"parse_{dataset_name}.py")
-    if not os.path.exists(dataset_parser):
-        open(dataset_parser, "w")
-    return dataset_parser
-
-
-def makemeta(path:str) -> None:
-    """
-    given the path,
-    copy the metadata.json to the dir
-    """
-    assert os.path.exists("metadata.json")
-    assert os.path.exists(path)
-
-    source = "metadata.json"
-    target = os.path.join(path, "metadata.json")
+def _copyfile(source:str, target:str) -> None:
     if not os.path.exists(target):
         try:
           shutil.copy(source, target)
         except IOError as e:
-         print("Unable to copy file. %s" % e)
+            print(f"Unable to copy file. {e}")
         except:
             print("Unexpected error:", sys.exc_info())
     return
 
+def makeparser(dir_parse_func:str, dataset_name:str) -> str:
+    source = _getfilename("parse_func_template")
+
+    assert os.path.exists(source)
+    assert os.path.exists(dir_parse_func)
+
+    path = os.path.join(dir_parse_func, _getfilename("parse_func_dataset").format(dataset_name))
+    _copyfile(source, path)
+    return path
+
+
+def makemeta(dir_metadata:str, dataset_name:str) -> str:
+    source = _getfilename("metadata_template")
+
+    assert os.path.exists(source)
+    assert os.path.exists(dir_metadata)
+
+    path = os.path.join(dir_metadata, _getfilename("metadata_dataset").format(dataset_name))
+    _copyfile(source, path)
+    return path
+
+# ##############
+#
+# Only used once
+#
+# ###############
 
 def writemeta() -> None:
     """
@@ -128,5 +130,17 @@ def writemeta() -> None:
             "curation": "(str) the data curation process",
         }
     }
-    with open("metadata.json", "w") as f:
-        f.write(json.dumps(meta, ensure_ascii=True, ))
+    if not os.path.exists(_getfilename("metadata_template")):
+        with open(_getfilename("metadata_template"), "w") as f:
+            f.write(json.dumps(meta, ensure_ascii=True, indent=4))
+    return
+
+def writeparse_func() -> None:
+    """
+    Content of _getfilename("metadata_template")
+    is directly written in the file.
+    """
+    return
+
+if __name__ == "__main__":
+    writemeta()
