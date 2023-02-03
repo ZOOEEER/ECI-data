@@ -20,7 +20,15 @@ def parse(paths, test:bool = False) -> None:
     activity = None
 
     # from paths["raw"] to get the files
+    si_1 = pd.read_csv(os.path.join(paths["raw"], 'Supplementary Table S1.csv'))
+    si_3 = pd.read_csv(os.path.join(paths["raw"], 'Supplementary Table S3.csv'))
+    si_1.rename(columns={'ID enzyme':'Name', 'AMINO ACID SEQUENCE':'Sequence'}, inplace=True)
+    si_3.rename(columns={'Ester library':'Name', 'Smiles code':'SMILES', 'Log P (+/- SD)':'LogP', 'Unnamed: 3':'LogP(std)'}, inplace=True)
 
+    activity = si_3.iloc[:,21:].copy()
+    enzyme_names = activity.columns
+    activity = activity.T
+    activity.index = list(range(len(activity)))
 
     # process data
 
