@@ -6,6 +6,11 @@ import os
 # import sys
 import shutil
 import json
+import logging
+from typing import List, Optional, Tuple, Union
+
+
+import pandas as pd
 
 # sys.path.append(os.path.realpath(__file__))
 
@@ -20,6 +25,9 @@ def makedir(dir_dataset:str, dataset_name:str) -> str:
     path = os.path.join(dir_dataset, dataset_name)
     if not os.path.exists(path):
         os.mkdir(path)
+        logging.info(f"Make dir: {path}")
+    else:
+        logging.info(f"Already exists: {path}")
 
     return path
 
@@ -37,11 +45,14 @@ def _getfilename(file: str) -> str:
 def _copyfile(source:str, target:str, rewrite:bool = False) -> None:
     if not os.path.exists(target) or rewrite:
         try:
-          shutil.copy(source, target)
+            shutil.copy(source, target)
+            logging.info(f"Copy file from {source} to {target}")
         except IOError as e:
-            print(f"Unable to copy file. {e}")
+            logging.info(f"Unable to copy file. {e}")
         except:
-            print("Unexpected error:", sys.exc_info())
+            logging.info(f"Unexpected error: {sys.exc_info()}")
+    else:
+        logging.info(f"Already exists:{target}")
     return
 
 def makeparser(dir_parse_func:str, dataset_name:str, rewrite:bool = False) -> str:
@@ -67,6 +78,30 @@ def makemeta(dir_metadata:str, dataset_name:str) -> str:
 
 def makeparsemodule(path: str) -> str:
     return path.replace(".\\", "").replace("\\", ".").replace(".py","")
+
+def save_files(
+    dir_clean:str, 
+    enzymes:Optional[pd.DataFrame], 
+    chemicals:Optional[pd.DataFrame], 
+    activity:Optional[pd.DataFrame]
+) -> None:
+
+    if (enzymes is None) or (chemicals is None) or (activity is None):
+        return
+
+    assert enzymes.shape[0] == activity.shape[0]
+    assert chemicals.shape[0] == activity.shape[1]
+
+    # the data could be saved into the dir_clean
+    for item, path in [
+        (enzymes, os.path.join(dir_clean, _getfilename("enzymes"))),
+        (chemicals, os.path.join(dir_clean, _getfilename("chemicals"))),
+        (activity, os.path.join(dir_clean, _getfilename("activity"))),
+    ]:
+        item.to_csv(path)
+        logging.info(f"Make the file: {path}")
+
+    return
 
 
 # ##############
@@ -151,6 +186,8 @@ def writeparse_func() -> None:
     """
     return
 
+
+
 if __name__ == "__main__":
     writemeta()
 
@@ -163,4 +200,4 @@ if __name__ == "__main__":
 # def test_makeparsemodule():
 #     path = "./process/parse_esterase.py"
 #     module = makeparsemodule(path)
-#     print(module)
+#     logging.info(module)

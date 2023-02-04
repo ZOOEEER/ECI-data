@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 from tqdm import tqdm
+import logging
 from typing import List, Tuple, Optional, Union
 
 import pubchempy as pcp
@@ -37,14 +38,14 @@ def download_sdf(identifier:int, sdfpath:str=None, verbose:bool=False):
             pcp.download('SDF', sdfpath, overwrite = True, identifier = identifier, record_type = '3d')
             bl_download = True
             if verbose:
-                print(f"({identifier}): Download the sdf file to path {sdfpath}")
+                logging.info(f"({identifier}): Download the sdf file to path {sdfpath}")
         except pcp.NotFoundError as e:
             if verbose:
-                print(f'({identifier}): Not Fount 3d Conformer.')
+                logging.info(f'({identifier}): Not Fount 3d Conformer.')
     else:
         bl_download = True
         if verbose:
-            print(f"({identifier}): Already exists the file at path {sdfpath}")
+            logging.info(f"({identifier}): Already exists the file at path {sdfpath}")
     if not bl_download:
         sdfpath = ""
     return sdfpath
@@ -56,11 +57,11 @@ def query_pubchem(
     ):
     query_results = {}
     if verbose:
-        print(f"Querying the Pubchem:(identifier = {query}, namespace = {namespace})")
+        logging.info(f"Querying the Pubchem:(identifier = {query}, namespace = {namespace})")
     try:
         compounds = pcp.get_compounds(identifier = query, namespace = namespace)
     except Exception as e:
-        print(e)
+        logging.info(e)
     for compound in compounds:
         if compound.cid:
             for result_column in result_columns:
@@ -130,7 +131,7 @@ def query_chemicals(
         )
         if query_results:
             no_hits.remove(i)
-            # print(query_results)
+            # logging.info(query_results)
             for result_column, query_result in query_results.items():
                 chemicals.loc[i, result_column] = query_result
 

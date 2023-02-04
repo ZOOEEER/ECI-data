@@ -90,7 +90,7 @@ For a new dataset, run the code to generate the directory and  `parse_[dataset_n
 python main.py -n [dataset_name]
 ```
 
- After collecting the raw data files and editing the `.py` file, run
+ After collecting the raw data files and editing the `parse_[dataset_name].py` file, run
 
 ```
 python main.py -n [dataset_name]

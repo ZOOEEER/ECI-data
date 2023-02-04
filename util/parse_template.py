@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import numpy as np
+import logging
 from typing import List, Optional, Tuple, Union
 
 from . import util_func, util_file
@@ -31,16 +32,7 @@ def parse(paths, test:bool = False) -> None:
         chemicals = pd.DataFrame([["C1", "C=O", "C1.sdf"], ["C2", "CCCC", "C2.sdf"]], columns=["Name", "SMILES", "sdf"])
         activity = pd.DataFrame([[0,1], [1,1], [0,0]])
 
-    # Comment out this line, if you like
-    if enzymes is None:
-        return
+    util_file.save_files(paths["clean"], enzymes, chemicals, activity)
 
-    assert enzymes.shape[0] == activity.shape[0]
-    assert chemicals.shape[0] == activity.shape[1]
-
-    # the data could be saved into the paths["clean"]
-    enzymes.to_csv(os.path.join(paths["clean"], util_file._getfilename("enzymes")))
-    chemicals.to_csv(os.path.join(paths["clean"], util_file._getfilename("chemicals")))
-    activity.to_csv(os.path.join(paths["clean"], util_file._getfilename("activity")))
 
     return
