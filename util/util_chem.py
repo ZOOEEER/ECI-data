@@ -1,4 +1,5 @@
 import os
+import numpy as np
 import pandas as pd
 from tqdm import tqdm
 import logging
@@ -9,7 +10,7 @@ import pubchempy as pcp
 
 # ##############
 #
-# Chemical
+# pubchempy
 #
 # ###############
 
@@ -61,6 +62,7 @@ def query_pubchem(
     try:
         compounds = pcp.get_compounds(identifier = query, namespace = namespace)
     except Exception as e:
+        compounds = None
         logging.info(e)
     for compound in compounds:
         if compound.cid:
@@ -143,3 +145,105 @@ def query_chemicals(
 
     return no_hits
 
+# ##############
+#
+# human-in-loop (query_local database)
+#
+# ###############
+
+def get_configs_local_db(config_name:str):
+    return {
+        "filename": "chemicals_local_db.csv",
+        "columns_key": ["Name"],
+        "columns_query": ["Name", "SMILES", "cid", "formula", "sdf"],
+        "columns_db": ["Name_db", "SMILES_db", "cid_db", "sdf_db"]
+    }[config_name]
+
+def get_map_local_db(result_column:str):
+    """
+    get default_value(0) or Local db property(1) for result_column.
+    """
+    return {
+        "Name_db": "Name",
+        "cid_db": "cid",
+        "SMILES_db": "SMILES",
+        "sdf_db": "sdf",
+    }[result_column]
+
+def make_local_db(chemicals:pd.DataFrame, rewrite:bool=False) -> None:
+    """
+
+    """
+    # key columns
+    for key in get_configs_local_db("columns_key"):
+        assert key in chemicals.columns
+    chemicals_db = chemicals[get_configs_local_db("columns_key")].copy()
+
+    # query columns
+    for column in get_configs_local_db("columns_query"):
+        if column in chemicals:
+            chemicals_db[column] = chemicals[column]
+
+    # state columns
+    # chemicals_db["cid_need"] = chemicals["cid"].apply(lambda x: 1 if x != get_default_values("cid") else 0)
+    # chemicals_db["sdf_need"] = chemicals["sdf"].apply(lambda x: 1 if x != get_default_values("sdf") else 0)
+
+    # db columns
+    for column in get_configs_local_db("columns_db"):
+        chemicals_db[column] = ""
+
+    # save to file
+    filename = get_configs_local_db("filename")
+    if not os.path.exists(filename):
+        chemicals_db.to_csv(filename)
+        logging.info(f"Write to new file: {filename}")
+    else:
+        if rewrite:
+            chemicals_db.to_csv(filename)
+            logging.info(f"Rewrite the file: {filename}")
+        else:
+            logging.info(f"Already exists: {filename}")
+
+    return filename
+
+
+def query_local(
+    chemicals:pd.DataFrame, 
+    local_db_file:Optional[str]=None,
+    result_columns:List[str] = ['cid_db', 'sdf_db'],
+    verbose:bool = False
+) -> List[int]:
+    """
+    Map the chemicals_db to chemicals
+    """
+
+    kwargs = locals()
+    kwargs.pop("chemicals")
+
+    chemicals_db = pd.read_csv(local_db_file, encoding='ANSI', index_col=0)
+    chemicals_db = chemicals_db.fillna("")
+
+    assert len(chemicals) == len(chemicals_db)
+    for result_column in result_columns:
+        assert result_column in chemicals_db.columns
+
+    if verbose:
+        logging.debug(f"Querying the local db for information.({kwargs})")
+
+    for i in tqdm(range(len(chemicals))):
+        for result_column in result_columns:
+            value = chemicals_db.loc[i,result_column]
+            cell = (i, get_map_local_db(result_column))
+            if value != "":
+                chemicals.loc[cell] = value
+                if verbose:
+                    logging.info(f"({cell}):{value}.")
+
+
+
+
+# ##############
+#
+# QSAR
+#
+# ###############

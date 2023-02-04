@@ -4,7 +4,7 @@ import numpy as np
 import logging
 from typing import List, Optional, Tuple, Union
 
-from . import util_func, util_file
+from . import util_chem, util_prot, util_func, util_file
 # import util_func, util_file
 
 
