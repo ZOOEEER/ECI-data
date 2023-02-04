@@ -25,8 +25,10 @@ def main(dataset_names:list, test:bool, *args, **kwargs):
 
     for dataset_name in dataset_names:
         paths = {}
-        paths["clean"] = util_file.makedir(dir_clean_dataset, dataset_name)
-        paths["raw"] = util_file.makedir(dir_raw_dataset, dataset_name)
+        paths["clean"] = util_file.makecleandir(dir_clean_dataset, dataset_name)
+        paths["sdf"] = util_file.makesdfdir(paths["clean"])
+        paths["pdb"] = util_file.makepdbdir(paths["clean"])
+        paths["raw"] = util_file.makerawdir(dir_raw_dataset, dataset_name)
         paths["parse_func"] = util_file.makeparser(dir_parse_func, dataset_name, rewrite = test)
         util_file.makemeta(paths["clean"], dataset_name)
         paths["name_parse_module"] = util_file.makeparsemodule(paths["parse_func"])

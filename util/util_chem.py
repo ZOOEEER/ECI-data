@@ -45,7 +45,7 @@ def download_sdf(identifier:int, sdfpath:str=None, verbose:bool=False):
     else:
         bl_download = True
         if verbose:
-            logging.info(f"({identifier}): Already exists the file at path {sdfpath}")
+            logging.info(f"({identifier}): Already exists {sdfpath}")
     if not bl_download:
         sdfpath = ""
     return sdfpath
@@ -71,6 +71,7 @@ def query_pubchem(
                         sdfname = f"{compound.cid}.sdf"
                     if sdfdir is None:
                         sdfdir = os.getcwd()
+                    assert os.path.exists(sdfdir)
                     sdfpath = os.path.join(sdfdir, sdfname)
                     sdfpath = download_sdf(identifier = compound.cid, sdfpath = sdfpath, verbose = verbose)
                     if sdfpath:
@@ -106,6 +107,8 @@ def query_chemicals(
         (index = no_hits, overwrite = False, init = False)
             After supplementing the contents of some columns, query Pubchem again.
     """
+    kwargs = locals()
+    kwargs.pop("chemicals")
 
     assert identifier_column in chemicals.columns
 
@@ -119,6 +122,9 @@ def query_chemicals(
     if index is None: # Query all
         index = [i for i in range(len(querys))]
     no_hits = index
+    if verbose:
+        logging.info(f"Number of chemicals: {len(index)}.")
+        logging.debug(f"Querying the Pubchem for information.({kwargs})")
 
     for i in tqdm( range(len(querys))):
         if not i in index:
@@ -136,3 +142,4 @@ def query_chemicals(
                 chemicals.loc[i, result_column] = query_result
 
     return no_hits
+

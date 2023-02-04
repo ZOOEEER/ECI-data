@@ -20,40 +20,29 @@ import pandas as pd
 #
 # ###############
 
-def makedir(dir_dataset:str, dataset_name:str) -> str:
+
+
+def makerawdir(dir_raw_dataset:str, dataset_name:str):
+    assert os.path.exists(dir_raw_dataset)
+    path = os.path.join(dir_raw_dataset, dataset_name)
+    return _makedir(path)
+
+
+def makecleandir(dir_clean_dataset:str, dataset_name:str):
+    assert os.path.exists(dir_clean_dataset)
+    path = os.path.join(dir_clean_dataset, dataset_name)
+    return _makedir(path)
+
+
+def makesdfdir(dir_dataset:str):
     assert os.path.exists(dir_dataset)
-    path = os.path.join(dir_dataset, dataset_name)
-    if not os.path.exists(path):
-        os.mkdir(path)
-        logging.info(f"Make dir: {path}")
-    else:
-        logging.info(f"Already exists: {path}")
+    path = os.path.join(dir_dataset, _getfilename("sdfdir"))
+    return _makedir(path)
 
-    return path
-
-def _getfilename(file: str) -> str:
-    return {
-        "metadata_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "metadata.json"),
-        "metadata_dataset": "metadata.json",
-        "parse_func_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "parse_template.py"),
-        "parse_func_dataset": "parse_{}.py",
-        "enzymes": "enzymes.csv",
-        "chemicals": "chemicals.csv",
-        "activity": "activity.csv",
-    }[file]
-
-def _copyfile(source:str, target:str, rewrite:bool = False) -> None:
-    if not os.path.exists(target) or rewrite:
-        try:
-            shutil.copy(source, target)
-            logging.info(f"Copy file from {source} to {target}")
-        except IOError as e:
-            logging.info(f"Unable to copy file. {e}")
-        except:
-            logging.info(f"Unexpected error: {sys.exc_info()}")
-    else:
-        logging.info(f"Already exists:{target}")
-    return
+def makepdbdir(dir_dataset:str):
+    assert os.path.exists(dir_dataset)
+    path = os.path.join(dir_dataset, _getfilename("pdbdir"))
+    return _makedir(path)
 
 def makeparser(dir_parse_func:str, dataset_name:str, rewrite:bool = False) -> str:
     source = _getfilename("parse_func_template")
@@ -64,7 +53,6 @@ def makeparser(dir_parse_func:str, dataset_name:str, rewrite:bool = False) -> st
     path = os.path.join(dir_parse_func, _getfilename("parse_func_dataset").format(dataset_name))
     _copyfile(source, path, rewrite)
     return path
-
 
 def makemeta(dir_metadata:str, dataset_name:str) -> str:
     source = _getfilename("metadata_template")
@@ -101,6 +89,41 @@ def save_files(
         item.to_csv(path)
         logging.info(f"Make the file: {path}")
 
+    return
+
+def _getfilename(file: str) -> str:
+    return {
+        "metadata_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "metadata.json"),
+        "metadata_dataset": "metadata.json",
+        "parse_func_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "parse_template.py"),
+        "parse_func_dataset": "parse_{}.py",
+        "enzymes": "enzymes.csv",
+        "chemicals": "chemicals.csv",
+        "activity": "activity.csv",
+        "sdfdir": "sdf", #
+        "pdbdir": "pdb", #
+    }[file]
+
+def _makedir(path:str) -> str:
+
+    if not os.path.exists(path):
+        os.mkdir(path)
+        logging.info(f"Make dir: {path}")
+    else:
+        logging.info(f"Already exists: {path}")
+    return path
+
+def _copyfile(source:str, target:str, rewrite:bool = False) -> None:
+    if not os.path.exists(target) or rewrite:
+        try:
+            shutil.copy(source, target)
+            logging.info(f"Copy file from {source} to {target}")
+        except IOError as e:
+            logging.info(f"Unable to copy file. {e}")
+        except:
+            logging.info(f"Unexpected error: {sys.exc_info()}")
+    else:
+        logging.info(f"Already exists:{target}")
     return
 
 
