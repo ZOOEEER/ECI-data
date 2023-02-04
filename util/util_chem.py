@@ -210,7 +210,7 @@ def make_local_db(chemicals:pd.DataFrame, rewrite:bool=False) -> None:
 def query_local(
     chemicals:pd.DataFrame, 
     local_db_file:Optional[str]=None,
-    result_columns:List[str] = ['cid_db', 'sdf_db'],
+    result_columns:List[str] = ["Name_db", "SMILES_db", "cid_db", "sdf_db"],
     verbose:bool = False
 ) -> List[int]:
     """
