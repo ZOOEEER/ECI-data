@@ -26,6 +26,8 @@ def _getfilename(file: str) -> str:
         "metadata_dataset": "metadata.json",
         "parse_func_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "parse_template.py"),
         "parse_func_dataset": "parse_{}.py",
+        "dev_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "dev.ipynb"),
+        "dev_dataset": "dev.ipynb",
         "enzymes": "enzymes.csv",
         "chemicals": "chemicals.csv",
         "activity": "activity.csv",
@@ -35,29 +37,29 @@ def _getfilename(file: str) -> str:
 
 # Deal with the clean, raw dirs
 
-def makerawdir(dir_raw_dataset:str, dataset_name:str):
+def makerawdir(dir_raw_dataset:str, dataset_name:str, *args, **kwargs):
     assert os.path.exists(dir_raw_dataset)
     path = os.path.join(dir_raw_dataset, dataset_name)
-    return _makedir(path)
+    return _makedir(path, *args, **kwargs)
 
 
-def makecleandir(dir_clean_dataset:str, dataset_name:str):
+def makecleandir(dir_clean_dataset:str, dataset_name:str, *args, **kwargs):
     assert os.path.exists(dir_clean_dataset)
     path = os.path.join(dir_clean_dataset, dataset_name)
-    return _makedir(path)
+    return _makedir(path, *args, **kwargs)
 
 
-def makesdfdir(dir_dataset:str):
+def makesdfdir(dir_dataset:str, *args, **kwargs):
     assert os.path.exists(dir_dataset)
     path = os.path.join(dir_dataset, _getfilename("sdfdir"))
-    return _makedir(path)
+    return _makedir(path, *args, **kwargs)
 
-def makepdbdir(dir_dataset:str):
+def makepdbdir(dir_dataset:str, *args, **kwargs):
     assert os.path.exists(dir_dataset)
     path = os.path.join(dir_dataset, _getfilename("pdbdir"))
-    return _makedir(path)
+    return _makedir(path, *args, **kwargs)
 
-def _makedir(path:str) -> str:
+def _makedir(path:str, *args, **kwargs) -> str:
 
     if not os.path.exists(path):
         os.mkdir(path)
@@ -66,32 +68,35 @@ def _makedir(path:str) -> str:
         logging.info(f"Already exists: {path}")
     return path
 
-# Deal with the py, ipynb, metadata
+# Deal with the py, ipynb, metadata (by copy)
 
 def makeparser(dir_parse_func:str, dataset_name:str, rewrite:bool = False) -> str:
-    source = _getfilename("parse_func_template")
-
-    assert os.path.exists(source)
-    assert os.path.exists(dir_parse_func)
-
-    path = os.path.join(dir_parse_func, _getfilename("parse_func_dataset").format(dataset_name))
-    _copyfile(source, path, rewrite)
+    path = copytemplate(dir_parse_func, "parse_func", dataset_name, *args, **kwargs)
     return path
 
-def makemeta(dir_metadata:str, dataset_name:str) -> str:
-    source = _getfilename("metadata_template")
-
-    assert os.path.exists(source)
-    assert os.path.exists(dir_metadata)
-
-    path = os.path.join(dir_metadata, _getfilename("metadata_dataset").format(dataset_name))
-    _copyfile(source, path)
+def makemeta(dir_metadata:str, dataset_name:str, *args, **kwargs) -> Union[str, None]:
+    path = copytemplate(dir_metadata, "metadata", dataset_name, *args, **kwargs)
     return path
 
-def makeparsemodule(path: str) -> str:
-    return path.replace(".\\", "").replace("\\", ".").replace(".py","")
+def makedev(dir_dev:str, dataset_name:str, *args, **kwargs) -> str:
+    path = copytemplate(dir_dev, "dev", dataset_name, *args, **kwargs)
+    return path
 
-def _copyfile(source:str, target:str, rewrite:bool = False) -> None:
+def copytemplate(dir_copy:str, template:str, dataset_name:str, *args, **kwargs) -> Union[str, None]:
+    """
+    copy the [template] to the [dataset_name] in [dir_copy]
+    """
+    source = _getfilename(f"{template}_template")
+    assert os.path.exists(source)
+
+    assert os.path.exists(dir_copy)
+    path = os.path.join(dir_copy, _getfilename(f"{template}_dataset").format(dataset_name))
+
+    path = _copyfile(source, path, *args, **kwargs)
+    return path
+
+def _copyfile(source:str, target:str, rewrite:bool = False, *args, **kwargs) -> str:
+    assert os.path.exists(source)
     if not os.path.exists(target) or rewrite:
         try:
             shutil.copy(source, target)
@@ -102,9 +107,16 @@ def _copyfile(source:str, target:str, rewrite:bool = False) -> None:
             logging.info(f"Unexpected error: {sys.exc_info()}")
     else:
         logging.info(f"Already exists:{target}")
-    return
+    return target
 
-# Deal with the ECI files
+def makeparsemodule(path: str) -> str:
+    """
+    convert the path to a module called by importlib.
+    """
+    return path.replace(".\\", "").replace("\\", ".").replace(".py","")
+
+
+# Deal with the ECI files (read and write of pd.DataFrame)
 
 def _read_file(file_path:str, *args, **kwargs) -> pd.DataFrame:
     # try:
