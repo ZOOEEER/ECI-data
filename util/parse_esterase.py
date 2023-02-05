@@ -78,7 +78,7 @@ def parse(paths, test:bool = False, *args, **kwargs) -> None:
 
 def online(paths, test:bool = False, *args, **kwargs) -> None:
 
-    enzymes, chemicals, activity = util_file.read_files(paths["clean"], )
+    enzymes, chemicals, activity = util_file.read_files(paths["clean"], *args, **kwargs)
 
     util_prot.query_enzymes(
         enzymes = enzymes,

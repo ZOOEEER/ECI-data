@@ -69,9 +69,9 @@ Here are 0 datasets now. Run the code to make the statistical table below, as th
 python main.py -s
 ```
 
-| Dataset | Description | #enzymes | #chemicals | #activity |
-| ------- | ----------- | -------- | ---------- | --------- |
-|         |             |          |            |           |
+| Dataset  | Description | #enzymes | #chemicals | #activity |
+| -------- | ----------- | -------- | ---------- | --------- |
+| esterase |             | 147      | 96         | 14112     |
 
 
 
@@ -87,16 +87,22 @@ conda install --yes --file requirements
 For a new dataset, run the code to generate the directory and  `parse_[dataset_name].py`  and `metadata.json` files.
 
 ```shell
-python main.py -n [dataset_name]
+python main.py -n [dataset_name] [-v]
 ```
 
  After collecting the raw data files and editing the `parse_[dataset_name].py` file, run
 
 ```
-python main.py -n [dataset_name]
+python main.py -n [dataset_name] [-v]
 ```
 
 The `main.py` will call the `parse()` function in the `parse_[dataset_name].py` to curate the data. Feel free to change the code in `parse_[dataset_name].py` and output finally the desired files.
+
+The operation of accessing the online server, such as submitting a task to Swiss-model, needs to wait for a period of time before accessing it to obtain content. Run the following commands to update table information and download files.
+
+```python
+python main.py -o [dataset_name] [-v]
+```
 
 As a text file, one could edit `metadata.json` at any moment.
 

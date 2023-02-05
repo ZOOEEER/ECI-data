@@ -1,25 +1,43 @@
-
 .
 |   .gitignore
 |   LICENSE
+|   main.py
 |   README.md
 |   requirements.txt
 |   tree.txt
 |   
 +---datasets
-|   \---esterase
+|   +---esterase
+|   |   |   activity.csv
+|   |   |   chemicals.csv
+|   |   |   enzymes.csv
+|   |   |   metadata.json
+|   |   |   
+|   |   +---pdb
+|   |   |       [0].json
+|   |   |       [0].pdb
+|   |   |       
+|   |   \---sdf
+|   |           [10290819].sdf
+|
 +---media
 |       problem_formulation.png
 |       
 +---process
-|   |   parse_esterase.py
-|   |   
-|   \---esterase
+|   +---esterase
+|   |   |   chemicals_local_db.csv
+|   |   |   Supplementary Table S1.csv
+|   |   |   Supplementary Table S3.csv
+|           
 \---util
-    |   main.py
+    |   dev_template.ipynb
+    |   metadata.json
+    |   parse_esterase.py
+    |   parse_template.py
+    |   README.md
+    |   util_chem.py
     |   util_file.py
+    |   util_func.py
+    |   util_log.py
+    |   util_prot.py
     |   __init__.py
-    |   
-    \---__pycache__
-            util_file.cpython-39.pyc
-            

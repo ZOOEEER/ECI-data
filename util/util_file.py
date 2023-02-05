@@ -26,7 +26,7 @@ def _getfilename(file: str) -> str:
         "metadata_dataset": "metadata.json",
         "parse_func_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "parse_template.py"),
         "parse_func_dataset": "parse_{}.py",
-        "dev_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "dev.ipynb"),
+        "dev_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "dev_template.ipynb"),
         "dev_dataset": "dev.ipynb",
         "enzymes": "enzymes.csv",
         "chemicals": "chemicals.csv",
@@ -70,7 +70,7 @@ def _makedir(path:str, *args, **kwargs) -> str:
 
 # Deal with the py, ipynb, metadata (by copy)
 
-def makeparser(dir_parse_func:str, dataset_name:str, rewrite:bool = False) -> str:
+def makeparser(dir_parse_func:str, dataset_name:str, *args, **kwargs) -> str:
     path = copytemplate(dir_parse_func, "parse_func", dataset_name, *args, **kwargs)
     return path
 
@@ -95,9 +95,9 @@ def copytemplate(dir_copy:str, template:str, dataset_name:str, *args, **kwargs) 
     path = _copyfile(source, path, *args, **kwargs)
     return path
 
-def _copyfile(source:str, target:str, rewrite:bool = False, *args, **kwargs) -> str:
+def _copyfile(source:str, target:str, test:bool=False, *args, **kwargs) -> str:
     assert os.path.exists(source)
-    if not os.path.exists(target) or rewrite:
+    if not os.path.exists(target) or test:
         try:
             shutil.copy(source, target)
             logging.info(f"Copy file from {source} to {target}")
@@ -135,7 +135,7 @@ def _save_file(item:pd.DataFrame, file_path:str, verbose:bool=False, *args, **kw
     # try:
     item.to_csv(file_path)
     if verbose:
-        logging.info(f"Make the file: {path}")
+        logging.info(f"Make the file: {file_path}")
     # except:
     return file_path
 
