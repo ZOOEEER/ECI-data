@@ -56,53 +56,53 @@ def get_project_result(project_id:str, *args, **kwargs) -> dict:
         project_info = json.loads(body.text)
     return project_info
 
-def dump_project_info(path:str, project_info:dict, *args, **kwargs) -> None:
+def dump_project_info(path:str, project_info:dict, verbose:bool=False, *args, **kwargs) -> None:
     with open(path, 'w') as f:
         json.dump(project_info, f, ensure_ascii=True, indent=4, )
     status = project_info["status"] if "status" in project_info.keys() else ""
-    if kwargs["verbose"]:
+    if verbose:
         logging.info(f'Save the project({project_info["project_id"]}, {status}) info to {path}.')
     return path
 
-def download_model(path:str, project_id:str, model_id:int=1, *args, **kwargs) -> None:
+def download_model(path:str, project_id:str, model_id:int=1, verbose:bool=False, *args, **kwargs) -> None:
     configs = get_swiss_model_configs()
     url = configs["host"] + f'/project/{project_id}/models/0{model_id}.pdb'
-    body = _requests_get(url, *args, **kwargs)
+    body = _requests_get(url, verbose, *args, **kwargs)
     if body.status_code in [200]:
         # Success, save the body
         with open(path, 'w') as f:
             f.write(body.text)
-        if kwargs["verbose"]:
+        if verbose:
             logging.info(f"Save the model {model_id} to {path}.")
     return path
 
-def _requests_post(url:str, data:dict, *args, **kwargs) -> requests.models.Response:
+def _requests_post(url:str, data:dict, verbose:bool=False, *args, **kwargs) -> requests.models.Response:
     configs = get_swiss_model_configs()
     body = None
     try:
         body = requests.post(url, json.dumps(data), headers = configs["headers"])
-        if kwargs["verbose"]:
+        if verbose:
            logging.info(f"Requests.post:{url}, {data}")
     except requests.exceptions.ConnectionError:
-        if kwargs["verbose"]:
+        if verbose:
             logging.info(f"Connection error.")
     except:
-        if kwargs["verbose"]:
+        if verbose:
             logging.info(f"Unknown error.")
     return body
 
-def _requests_get(url:str, *args, **kwargs) -> requests.models.Response:
+def _requests_get(url:str, verbose:bool=False, *args, **kwargs) -> requests.models.Response:
     configs = get_swiss_model_configs()
     body = None
     try:
         body = requests.get(url, headers = configs["headers"])
-        if kwargs["verbose"]:
+        if verbose:
             logging.info(f"Requests.get:(url={url}")
     except requests.exceptions.ConnectionError:
-        if kwargs["verbose"]:
+        if verbose:
             logging.info(f"Connection error.")
     except:
-        if kwargs["verbose"]:
+        if verbose:
             logging.info(f"Unknown error.")
     return body
 
