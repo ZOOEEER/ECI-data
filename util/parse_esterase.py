@@ -47,22 +47,23 @@ def parse(paths, test:bool = False, *args, **kwargs) -> None:
         sdfdir = paths['sdf'],
         overwrite = False,
         init = True,
-        verbose = True
+        # verbose = True,
+        *args, **kwargs
     )
 
-    # util_chem.make_local_db(chemicals) # dev
+    # util_chem.make_local_db(chemicals, *args, **kwargs) # dev
 
     util_chem.query_local(
         chemicals, 
         filename = os.path.join(paths["raw"], util_chem.get_configs_local_db("filename")),
         result_columns = ['cid_db', 'sdf_db'],
-        verbose = True
+        *args, **kwargs
     )
 
     util_prot.query_enzymes(
         enzymes = enzymes,
         pdbdir = paths['pdb'],
-        **kwargs
+        *args, **kwargs
     )
 
     # Definition of the format
@@ -71,7 +72,7 @@ def parse(paths, test:bool = False, *args, **kwargs) -> None:
         chemicals = pd.DataFrame([["C1", "C=O", "C1.sdf"], ["C2", "CCCC", "C2.sdf"]], columns=["Name", "SMILES", "sdf"])
         activity = pd.DataFrame([[0,1], [1,1], [0,0]])
 
-    util_file.save_files(paths["clean"], enzymes, chemicals, activity)
+    util_file.save_files(paths["clean"], enzymes, chemicals, activity, *args, **kwargs)
 
     return
 
@@ -82,9 +83,9 @@ def online(paths, test:bool = False, *args, **kwargs) -> None:
     util_prot.query_enzymes(
         enzymes = enzymes,
         pdbdir = paths['pdb'],
-        **kwargs
+        *args, **kwargs
     )
 
-    util_file.save_files(paths["clean"], enzymes, chemicals, activity)
+    util_file.save_files(paths["clean"], enzymes, chemicals, activity, *args, **kwargs)
 
     return

@@ -14,7 +14,7 @@ import pubchempy as pcp
 #
 # ###############
 
-def get_default_values(result_column:str, i = 0):
+def get_default_values(result_column:str, i = 0) -> Union[str,int]:
     """
     get default_value(0) or Pubchem property(1) for result_column.
     """
@@ -27,7 +27,7 @@ def get_default_values(result_column:str, i = 0):
         "sdf": ("",""),
     }[result_column][i]
 
-def download_sdf(identifier:int, sdfpath:str=None, verbose:bool=False):
+def download_sdf(identifier:int, sdfpath:str=None, verbose:bool=False, *args, **kwargs):
     """
     A wrapper of pcp.download for 3D sdf file.
     """
@@ -54,7 +54,8 @@ def download_sdf(identifier:int, sdfpath:str=None, verbose:bool=False):
 def query_pubchem(
         query:Union[str, int], namespace:str, 
         result_columns:List[str], sdfdir:str=None, sdfname:str=None, 
-        verbose:bool=False
+        verbose:bool=False,
+        *args, **kwargs
     ):
     query_results = {}
     if verbose:
@@ -75,7 +76,7 @@ def query_pubchem(
                         sdfdir = os.getcwd()
                     assert os.path.exists(sdfdir)
                     sdfpath = os.path.join(sdfdir, sdfname)
-                    sdfpath = download_sdf(identifier = compound.cid, sdfpath = sdfpath, verbose = verbose)
+                    sdfpath = download_sdf(identifier = compound.cid, sdfpath = sdfpath, verbose = verbose, *args, **kwargs)
                     if sdfpath:
                         query_results[result_column] = os.path.split(sdfpath)[1]
                 else:
@@ -94,6 +95,7 @@ def query_chemicals(
         overwrite:bool = False,
         init:bool = True,
         verbose:bool = False,
+        *args, **kwargs
     ) -> List[int]:
     """
     Query Pubchem database by [chemicals]' [identifier_column],
@@ -135,7 +137,8 @@ def query_chemicals(
         query_results = query_pubchem(
             query = query, namespace = namespace,
             result_columns = result_columns, sdfdir = sdfdir, sdfname = None,
-            verbose = verbose
+            verbose = verbose,
+            *args, **kwargs
         )
         if query_results:
             no_hits.remove(i)
@@ -147,11 +150,11 @@ def query_chemicals(
 
 # ##############
 #
-# human-in-loop (query_local database)
+# human-in-loop (query local database)
 #
 # ###############
 
-def get_configs_local_db(config_name:str):
+def get_configs_local_db(config_name:str) -> Union[str, list]:
     return {
         "filename": "chemicals_local_db.csv",
         "columns_key": ["Name"],
@@ -159,7 +162,7 @@ def get_configs_local_db(config_name:str):
         "columns_db": ["Name_db", "SMILES_db", "cid_db", "sdf_db"]
     }[config_name]
 
-def get_map_local_db(result_column:str):
+def get_map_local_db(result_column:str) -> str:
     """
     get default_value(0) or Local db property(1) for result_column.
     """
@@ -170,7 +173,7 @@ def get_map_local_db(result_column:str):
         "sdf_db": "sdf",
     }[result_column]
 
-def make_local_db(chemicals:pd.DataFrame, rewrite:bool=False) -> None:
+def make_local_db(chemicals:pd.DataFrame, rewrite:bool=False, *args, **kwargs) -> None:
     """
 
     """
@@ -211,7 +214,8 @@ def query_local(
     chemicals:pd.DataFrame, 
     filename:Optional[str]=None,
     result_columns:List[str] = ["Name_db", "SMILES_db", "cid_db", "sdf_db"],
-    verbose:bool = False
+    verbose:bool = False,
+    *args, **kwargs
 ) -> List[int]:
     """
     Map the chemicals_db to chemicals
@@ -219,7 +223,7 @@ def query_local(
 
     kwargs = locals()
     kwargs.pop("chemicals")
-    
+
     filename = filename if filename else get_configs_local_db("filename")
     chemicals_db = pd.read_csv(filename, encoding='ANSI', index_col=0)
     chemicals_db = chemicals_db.fillna("")

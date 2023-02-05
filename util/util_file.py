@@ -20,7 +20,20 @@ import pandas as pd
 #
 # ###############
 
+def _getfilename(file: str) -> str:
+    return {
+        "metadata_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "metadata.json"),
+        "metadata_dataset": "metadata.json",
+        "parse_func_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "parse_template.py"),
+        "parse_func_dataset": "parse_{}.py",
+        "enzymes": "enzymes.csv",
+        "chemicals": "chemicals.csv",
+        "activity": "activity.csv",
+        "sdfdir": "sdf", #
+        "pdbdir": "pdb", #
+    }[file]
 
+# Deal with the clean, raw dirs
 
 def makerawdir(dir_raw_dataset:str, dataset_name:str):
     assert os.path.exists(dir_raw_dataset)
@@ -43,6 +56,17 @@ def makepdbdir(dir_dataset:str):
     assert os.path.exists(dir_dataset)
     path = os.path.join(dir_dataset, _getfilename("pdbdir"))
     return _makedir(path)
+
+def _makedir(path:str) -> str:
+
+    if not os.path.exists(path):
+        os.mkdir(path)
+        logging.info(f"Make dir: {path}")
+    else:
+        logging.info(f"Already exists: {path}")
+    return path
+
+# Deal with the py, ipynb, metadata
 
 def makeparser(dir_parse_func:str, dataset_name:str, rewrite:bool = False) -> str:
     source = _getfilename("parse_func_template")
@@ -67,59 +91,6 @@ def makemeta(dir_metadata:str, dataset_name:str) -> str:
 def makeparsemodule(path: str) -> str:
     return path.replace(".\\", "").replace("\\", ".").replace(".py","")
 
-
-def read_files(dir_clean:str) -> Tuple[pd.DataFrame]:
-    enzymes = pd.read_csv(os.path.join(dir_clean, _getfilename("enzymes")), index_col=0).fillna("")
-    chemicals = pd.read_csv(os.path.join(dir_clean, _getfilename("chemicals")), index_col=0).fillna("")
-    activity = pd.read_csv(os.path.join(dir_clean, _getfilename("activity")), index_col=0).fillna("")
-    return enzymes, chemicals, activity
-
-def save_files(
-    dir_clean:str, 
-    enzymes:Optional[pd.DataFrame], 
-    chemicals:Optional[pd.DataFrame], 
-    activity:Optional[pd.DataFrame]
-) -> None:
-
-    if (enzymes is None) or (chemicals is None) or (activity is None):
-        return
-
-    assert enzymes.shape[0] == activity.shape[0]
-    assert chemicals.shape[0] == activity.shape[1]
-
-    # the data could be saved into the dir_clean
-    for item, path in [
-        (enzymes, os.path.join(dir_clean, _getfilename("enzymes"))),
-        (chemicals, os.path.join(dir_clean, _getfilename("chemicals"))),
-        (activity, os.path.join(dir_clean, _getfilename("activity"))),
-    ]:
-        item.to_csv(path)
-        logging.info(f"Make the file: {path}")
-
-    return
-
-def _getfilename(file: str) -> str:
-    return {
-        "metadata_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "metadata.json"),
-        "metadata_dataset": "metadata.json",
-        "parse_func_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "parse_template.py"),
-        "parse_func_dataset": "parse_{}.py",
-        "enzymes": "enzymes.csv",
-        "chemicals": "chemicals.csv",
-        "activity": "activity.csv",
-        "sdfdir": "sdf", #
-        "pdbdir": "pdb", #
-    }[file]
-
-def _makedir(path:str) -> str:
-
-    if not os.path.exists(path):
-        os.mkdir(path)
-        logging.info(f"Make dir: {path}")
-    else:
-        logging.info(f"Already exists: {path}")
-    return path
-
 def _copyfile(source:str, target:str, rewrite:bool = False) -> None:
     if not os.path.exists(target) or rewrite:
         try:
@@ -132,6 +103,60 @@ def _copyfile(source:str, target:str, rewrite:bool = False) -> None:
     else:
         logging.info(f"Already exists:{target}")
     return
+
+# Deal with the ECI files
+
+def _read_file(file_path:str, *args, **kwargs) -> pd.DataFrame:
+    # try:
+    data = pd.read_csv(file_path, index_col=0).fillna("")
+    # except:
+    return data
+
+def read_files(dir_clean:str, *args, **kwargs) -> Tuple[pd.DataFrame]:
+    items = [
+        _read_file(os.path.join(dir_clean, _getfilename(item_name)))
+            for item_name in ["enzymes", "chemicals", "activity"]
+    ]
+    return items[0], items[1], items[2]
+
+def _save_file(item:pd.DataFrame, file_path:str, verbose:bool=False, *args, **kwargs) -> Union[str, None]:
+    # try:
+    item.to_csv(file_path)
+    if verbose:
+        logging.info(f"Make the file: {path}")
+    # except:
+    return file_path
+
+def save_files(
+    dir_clean:str, 
+    enzymes:Optional[pd.DataFrame], 
+    chemicals:Optional[pd.DataFrame], 
+    activity:Optional[pd.DataFrame],
+    *args, **kwargs
+) -> None:
+
+    if (enzymes is None) or (chemicals is None) or (activity is None):
+        return
+
+    assert enzymes.shape[0] == activity.shape[0]
+    assert chemicals.shape[0] == activity.shape[1]
+
+    # the data could be saved into the dir_clean
+    for item, item_name in [
+        (enzymes, "enzymes"),
+        (chemicals, "chemicals"),
+        (activity, "activity"),
+    ]:
+        file_path = os.path.join(dir_clean, _getfilename(item_name))
+        _save_file(item, file_path, *args, **kwargs)
+
+    return
+
+
+
+
+
+
 
 
 # ##############

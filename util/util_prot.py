@@ -91,7 +91,7 @@ def download_model(path:str, project_id:str, model_id:int=1, verbose:bool=False,
     configs = get_swiss_model_configs()
     url = configs["host"] + f'/project/{project_id}/models/0{model_id}.pdb'
     body = _requests_get(url, verbose, *args, **kwargs)
-    if body.status_code in [200]:
+    if body and body.status_code in [200]:
         # Success, save the body
         with open(path, 'w') as f:
             f.write(body.text)

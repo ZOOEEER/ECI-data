@@ -41,9 +41,9 @@ def main(dataset_names:list, test:bool, online:bool, *args, **kwargs):
         parse_module = importlib.import_module(paths["name_parse_module"])
 
         if not online:
-            parse_module.parse(paths, test = test, **kwargs)
+            parse_module.parse(paths, test = test, *args, **kwargs)
         else:
-            parse_module.online(paths, test = test, **kwargs)
+            parse_module.online(paths, test = test, *args, **kwargs)
 
 if __name__ == "__main__":
     args = parser.parse_args()
