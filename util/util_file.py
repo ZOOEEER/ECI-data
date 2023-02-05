@@ -126,7 +126,7 @@ def _read_file(file_path:str, *args, **kwargs) -> pd.DataFrame:
 
 def read_files(dir_clean:str, *args, **kwargs) -> Tuple[pd.DataFrame]:
     items = [
-        _read_file(os.path.join(dir_clean, _getfilename(item_name)))
+        _read_file(os.path.join(dir_clean, _getfilename(item_name)), *args, **kwargs)
             for item_name in ["enzymes", "chemicals", "activity"]
     ]
     return items[0], items[1], items[2]
