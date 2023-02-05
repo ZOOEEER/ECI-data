@@ -1,0 +1,97 @@
+,Name,SMILES,cid,molecular_formula,sdf
+0,1-Napthyl acetate,CC(=O)OC1=CC=CC2=CC=CC=C21,13247,C12H10O2,13247.sdf
+1,1-Naphthyl butyrate,CCCC(=O)OC1=CC=CC2=CC=CC=C21,76571,C14H14O2,76571.sdf
+2,Glyceryl triacetate,CC(=O)OCC(COC(=O)C)OC(=O)C ,5541,C9H14O6,5541.sdf
+3,Glyceryl tripropionate, CCC(=O)OCC(COC(=O)CC)OC(=O)CC ,8763,C12H20O6,8763.sdf
+4,Glyceryl tributyrate,CCCC(=O)OCC(COC(=O)CCC)OC(=O)CCC,6050,C15H26O6,6050.sdf
+5,Glyceryl trioctanoate,CCCCCCCC(=O)OCC(COC(=O)CCCCCCC)OC(=O)CCCCCCC ,10850,C27H50O6,10850.sdf
+6,Triolein,CCCCCCCCC=CCCCCCCCC(=O)OCC(COC(=O)CCCCCCCC=CCCCCCCCC)OC(=O)CCCCCCCC=CCCCCCCCC,31207,C57H104O6,31207.sdf
+7,Hexyl acetate,CCCCCCOC(=O)C,8908,C8H16O2,8908.sdf
+8,Octyl acetate,CCCCCCCCOC(=O)C,8164,C10H20O2,8164.sdf
+9,Dodecanoyl acetate,CCCCCCCCCCCCOC(=O)C,8205,C14H28O2,8205.sdf
+10,Pentadecyl acetate ,CCCCCCCCCCCCCCCOC(=O)C ,522077,C17H34O2,522077.sdf
+11,Ethyl acetate,CCOC(=O)C ,8857,C4H8O2,8857.sdf
+12,Ethyl propionate,CCC(=O)OCC ,7749,C5H10O2,7749.sdf
+13,Ethyl butyrate,CCCC(=O)OCC,7762,C6H12O2,7762.sdf
+14,Ethyl hexanoate,CCCCCC(=O)OCC,31265,C8H16O2,31265.sdf
+15,Ethyl octanoate,CCCCCCCC(=O)OCC,7799,C10H20O2,7799.sdf
+16,Ethyl decanoate,CCCCCCCCCC(=O)OCC ,8048,C12H24O2,8048.sdf
+17,Ethyl dodecanoate,CCCCCCCCCCCC(=O)OCC,7800,C14H28O2,7800.sdf
+18,Ethyl myristate,CCCCCCCCCCCCCC(=O)OCC ,31283,C16H32O2,31283.sdf
+19,Ethyl benzoate,CCOC(=O)C1=CC=CC=C1 ,7165,C9H10O2,7165.sdf
+20,(1R)-(-)-Menthyl acetate,C[C@@H]1CCC(C(C1)OC(=O)C)C(C)C,12732529,C12H22O2,12732529.sdf
+21,(1S)-(+)-Menthyl acetate,C[C@H]1CCC(C(C1)OC(=O)C)C(C)C,12732528,C12H22O2,12732528.sdf
+22,N-Benzyl-L-proline ethyl ester,CCOC(=O)[C@@H]1CCCN1CC2=CC=CC=C2,688177,C14H19NO2,688177.sdf
+23,N-Benzyl-D-proline ethyl ester,CCOC(=O)[C@H]1CCCN1CC2=CC=CC=C2,688176,C14H19NO2,688176.sdf
+24,Methyl (R)-(-)-mandelate,COC(=O)[C@@H](C1=CC=CC=C1)O,2724623,C9H10O3,2724623.sdf
+25,Methyl (S)-(+)-mandelate,COC(=O)[C@H](C1=CC=CC=C1)O,643570,C9H10O3,643570.sdf
+26,Ethyl (R)-(+)-4-chloro-3-hydroxybutyrate [E(R)CHB],CCOC(=O)C[C@H](CCl)O,2734445,C6H11ClO3,2734445.sdf
+27,Ethyl (S)-(−)-4-chloro-3-hydroxybutyrate [E(S)CHB],CCOC(=O)C[C@@H](CCl)O,7019277,C6H11ClO3,7019277.sdf
+28,(+)-Ethyl D-Lactate,CCOC(=O)[C@@H](C)O,637513,C5H10O3,637513.sdf
+29,(−)-Ethyl L-lactate,CCOC(=O)[C@H](C)O,92831,C5H10O3,92831.sdf
+30,(+)-Methyl (S)-3-hydroxybutyrate,C[C@@H](CC(=O)OC)O,6950307,C5H10O3,6950307.sdf
+31,"Benzoic acid, 4-formyl-, phenylmethyl ester [BFPME]",C1=CC=C(C=C1)COC(=O)C2=CC=C(C=C2)C=O,11528845,C15H12O3,11528845.sdf
+32,(-)-Methyl (R)-3-hydroxybutyrate,C[C@H](CC(=O)OC)O,2724279,C5H10O3,2724279.sdf
+33,(1R)-(+)-Neomenthyl acetate,C[C@H]1CC[C@@H]([C@@H](C1)OC(=O)C)C(C)C,6432249,C12H22O2,6432249.sdf
+34,(1S)-(+)-Neomenthyl acetate,C[C@@H]1CC[C@H]([C@H](C1)OC(=O)C)C(C)C,75699,C12H22O2,75699.sdf
+35,Propylparaben,CCCOC(=O)C1=CC=C(C=C1)O,7175,C10H12O3,7175.sdf
+36,Butylparaben,CCCCOC(=O)C1=CC=C(C=C1)O ,7184,C11H14O3,7184.sdf
+37,Methyl 3-hydroxybenzoate,COC(=O)C1=CC(=CC=C1)O ,88068,C8H8O3,88068.sdf
+38,Methyl 2-hydroxybenzoate,COC(=O)C1=CC=CC=C1O,4133,C8H8O3,4133.sdf
+39,Phthalic acid diethyl ester,CCOC(=O)C1=CC=CC=C1C(=O)OCC,6781,C12H14O4,6781.sdf
+40,(−)-Methyl (R)-3-hydroxyvalerate,CC[C@H](CC(=O)OC)O,11804797,C6H12O3,11804797.sdf
+41,(+)-Methyl (S)-3-hydroxyvalerate,CC[C@@H](CC(=O)OC)O,10290819,C6H12O3,10290819.sdf
+42,Benzyl (R)-(+)-2-hydroxy-3-phenylpropionate [BHPP],C1=CC=C(C=C1)C[C@H](C(=O)OCC2=CC=CC=C2)O,9992574,C16H16O3,9992574.sdf
+43,Benzylparaben,C1=CC=C(C=C1)COC(=O)C2=CC=C(C=C2)O,7180,C14H12O3,7180.sdf
+44,Methyl benzoate,COC(=O)C1=CC=CC=C1,7150,C8H8O2,7150.sdf
+45,Methyl butyrate,CCCC(=O)OC,12180,C5H10O2,12180.sdf
+46,Methyl decanoate,CCCCCCCCCC(=O)OC ,8050,C11H22O2,8050.sdf
+47,Methyl oleate,CCCCCCCCC=CCCCCCCCC(=O)OC ,8202,C19H36O2,8202.sdf
+48,Methyl hexanoate,CCCCCC(=O)OC,7824,C7H14O2,7824.sdf
+49,Methyl octanoate,CCCCCCCC(=O)OC,8091,C9H18O2,8091.sdf
+50,Methyl dodecanoate,CCCCCCCCCCCC(=O)OC ,8139,C13H26O2,8139.sdf
+51,Methyl myristate,CCCCCCCCCCCCCC(=O)OC ,31284,C15H30O2,31284.sdf
+52,Propyl propionate,CCCOC(=O)CC ,7803,C6H12O2,7803.sdf
+53,Propyl butyrate,CCCC(=O)OCCC,7770,C7H14O2,7770.sdf
+54,Propyl hexanoate,CCCCCC(=O)OCCC,12293,C9H18O2,12293.sdf
+55,Phenylethyl cinnamate,C1=CC=C(C=C1)CCOC(=O)C=CC2=CC=CC=C2 ,7659,C17H16O2,7659.sdf
+56,Isobutyl cinnamate,CC(C)COC(=O)C=CC1=CC=CC=C1 ,31223,C13H16O2,31223.sdf
+57,"Methyl 2,5-dihydroxycinnamate",COC(=O)/C=C/C1=C(C=CC(=C1)O)O,5353609,C10H10O4,5353609.sdf
+58,Methyl cinnamate,COC(=O)C=CC1=CC=CC=C1 ,7644,C10H10O2,7644.sdf
+59,Methyl ferulate,COC1=C(C=CC(=C1)C=CC(=O)OC)O ,16830,C11H12O4,16830.sdf
+60,Vinyl acetate,CC(=O)OC=C ,7904,C4H6O2,7904.sdf
+61,Vinyl propionate,CCC(=O)OC=C ,7750,C5H8O2,7750.sdf
+62,Vinyl butyrate,CCCC(=O)OC=C,31247,C6H10O2,31247.sdf
+63,Vinyl laurate,CCCCCCCCCCCC(=O)OC=C,75069,C14H26O2,75069.sdf
+64,Vinyl myristate,CCCCCCCCCCCCCC(=O)OC=C ,545633,C16H30O2,545633.sdf
+65,Vinyl palmitate,CCCCCCCCCCCCCCCC(=O)OC=C ,69658,C18H34O2,69658.sdf
+66,Vinyl oleate,CCCCCCCCC=CCCCCCCCC(=O)OC=C ,223409,C20H36O2,223409.sdf
+67,Vinyl benzoate,C=COC(=O)C1=CC=CC=C1 ,13037,C9H8O2,13037.sdf
+68,Vinyl crotonate,CC=CC(=O)OC=C ,61774,C6H8O2,61774.sdf
+69,Vinyl acrylate,C=CC(=O)OC=C ,75118,C5H6O2,75118.sdf
+70,Geranyl acetate,CC(=CCCC(=CCOC(=O)C)C)C ,7780,C12H20O2,7780.sdf
+71,3-Methyl-3-buten-1-yl acetate,CC(=C)CCOC(=O)C,78879,C7H12O2,78879.sdf
+72,Ethyl 2-ethylacetoacetate,CCC(C(=O)C)C(=O)OCC ,79065,C8H14O3,79065.sdf
+73,Ethyl 2-methylacetoacetate,CCOC(=O)C(C)C(=O)C ,701,C7H12O3,701.sdf
+74,Ethyl 3-oxohexanoate,CCCC(=O)CC(=O)OCC ,238498,C8H14O3,238498.sdf
+75,Ethyl acetoacetate,CCOC(=O)CC(=O)C ,8868,C6H10O3,8868.sdf
+76,Ethyl propionylacetate,CCC(=O)CC(=O)OCC ,78656,C7H12O3,78656.sdf
+77,ϒ-Valerolactone,CC1CCC(=O)O1,7921,C5H8O2,7921.sdf
+78,Methyl glycolate,COC(=O)CO,66774,C3H6O3,66774.sdf
+79,D-Pantolactone,CC1(COC(=O)[C@@H]1O)C,439368,C6H10O3,439368.sdf
+80,L-Pantolactone,CC1(COC(=O)[C@H]1O)C,736053,C6H10O3,736053.sdf
+81,(1R)-(-)-dimenthyl succinate,C[C@@H]1CC[C@H]([C@@H](C1)OC(=O)CCC(=O)O[C@@H]2C[C@@H](CC[C@H]2C(C)C)C)C(C)C,11133006,C24H42O4,11133006.sdf
+82,Ethyl 2-chlorobenzoate,CCOC(=O)C1=CC=CC=C1Cl ,81783,C9H9ClO2,81783.sdf
+83,Cyclohexyl butyrate,CCCC(=O)OC1CCCCC1,243783,C10H18O2,243783.sdf
+84,n-Pentyl benzoate,CCCCCOC(=O)C1=CC=CC=C1 ,16296,C12H16O2,16296.sdf
+85,"2,4-Dichlorophenyl 2,4-dichlorobenzoate [DCPDCB]",C1=CC(=C(C=C1Cl)Cl)C(=O)OC2=C(C=C(C=C2)Cl)Cl,3119453,C13H6Cl4O2,3119453.sdf
+86,"2,4-Dichlorobenzyl 2,4-dichlorobenzoate  [DCBDCB]",C1=CC(=C(C=C1Cl)Cl)COC(=O)C2=C(C=C(C=C2)Cl)Cl,24212948,C14H8Cl4O2,24212948.sdf
+87,"Diethyl-2,6-dimethyl 4-phenyl-1,4-dihydro pyridine-3,5-dicarboxylate [DDPDPDC]",CCOC(=O)C1=C(NC(=C(C1C2=CC=CC=C2)C(=O)OCC)C)C,14420,C19H23NO4,14420.sdf
+88,(+)-Methyl D-Lactate,C[C@H](C(=O)OC)O,637514,C4H8O3,637514.sdf
+89,(-)-Methyl L-Lactate,C[C@@H](C(=O)OC)O,94386,C4H8O3,94386.sdf
+90,Propyl acetate,CCCOC(=O)C ,7997,C5H10O2,7997.sdf
+91,Butyl acetate,CCCCOC(=O)C ,31272,C6H12O2,31272.sdf
+92,Phenyl acetate,CC(=O)OC1=CC=CC=C1 ,31229,C8H8O2,31229.sdf
+93,Phenyl propionate,CCC(=O)OC1=CC=CC=C1 ,12497,C9H10O2,12497.sdf
+94,Glucose pentaacetate,CC(=O)OCC(C(C(C(C=O)OC(=O)C)OC(=O)C)OC(=O)C)OC(=O)C ,520932,C16H22O11,520932.sdf
+95,Glyceryl trilaurate,CCCCCCCCCCCC(=O)OCC(COC(=O)CCCCCCCCCCC)OC(=O)CCCCCCCCCCC,10851,C39H74O6,10851.sdf
