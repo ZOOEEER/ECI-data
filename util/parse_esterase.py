@@ -9,7 +9,7 @@ from . import util_chem, util_prot, util_func, util_file
 
 
 
-def parse(paths, test:bool = False) -> None:
+def parse(paths, test:bool = False, *args, **kwargs) -> None:
     """
     The return of parse function:
     enzymes: (#E)
@@ -26,13 +26,44 @@ def parse(paths, test:bool = False) -> None:
     si_1.rename(columns={'ID enzyme':'Name', 'AMINO ACID SEQUENCE':'Sequence'}, inplace=True)
     si_3.rename(columns={'Ester library':'Name', 'Smiles code':'SMILES', 'Log P (+/- SD)':'LogP', 'Unnamed: 3':'LogP(std)'}, inplace=True)
 
+    # make activity, enzymes["Name", "Sequence"], chemicals["Name", "SMILES", ("cid", "sdf")]
     activity = si_3.iloc[:,21:].copy()
     enzyme_names = activity.columns
     activity = activity.T
     activity.index = list(range(len(activity)))
 
-    # process data
+    enzymes = si_1[["Name", "Sequence"]].copy()
+    enzymes["Sequence"] = enzymes["Sequence"].apply(util_prot.formalize)
 
+    chemicals = si_3[["Name", "SMILES"]].copy()
+
+    # Query the online and local_db
+    no_hits = util_chem.query_chemicals(
+        chemicals = chemicals,
+        index = None,
+        identifier_column = 'SMILES',
+        namespace = 'smiles',
+        result_columns = ['cid', 'molecular_formula', 'sdf'],
+        sdfdir = paths['sdf'],
+        overwrite = False,
+        init = True,
+        verbose = True
+    )
+
+    # util_chem.make_local_db(chemicals) # dev
+
+    util_chem.query_local(
+        chemicals, 
+        filename = os.path.join(paths["raw"], util_chem.get_configs_local_db("filename")),
+        result_columns = ['cid_db', 'sdf_db'],
+        verbose = True
+    )
+
+    util_prot.query_enzymes(
+        enzymes = enzymes,
+        pdbdir = paths['pdb'],
+        **kwargs
+    )
 
     # Definition of the format
     if test:
@@ -42,5 +73,18 @@ def parse(paths, test:bool = False) -> None:
 
     util_file.save_files(paths["clean"], enzymes, chemicals, activity)
 
+    return
+
+def online(paths, test:bool = False, *args, **kwargs) -> None:
+
+    enzymes, chemicals, activity = util_file.read_files(paths["clean"], )
+
+    util_prot.query_enzymes(
+        enzymes = enzymes,
+        pdbdir = paths['pdb'],
+        **kwargs
+    )
+
+    util_file.save_files(paths["clean"], enzymes, chemicals, activity)
 
     return

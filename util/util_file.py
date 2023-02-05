@@ -67,6 +67,13 @@ def makemeta(dir_metadata:str, dataset_name:str) -> str:
 def makeparsemodule(path: str) -> str:
     return path.replace(".\\", "").replace("\\", ".").replace(".py","")
 
+
+def read_files(dir_clean:str) -> Tuple[pd.DataFrame]:
+    enzymes = pd.read_csv(os.path.join(dir_clean, _getfilename("enzymes")), index_col=0).fillna("")
+    chemicals = pd.read_csv(os.path.join(dir_clean, _getfilename("chemicals")), index_col=0).fillna("")
+    activity = pd.read_csv(os.path.join(dir_clean, _getfilename("activity")), index_col=0).fillna("")
+    return enzymes, chemicals, activity
+
 def save_files(
     dir_clean:str, 
     enzymes:Optional[pd.DataFrame], 

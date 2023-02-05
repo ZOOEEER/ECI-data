@@ -209,7 +209,7 @@ def make_local_db(chemicals:pd.DataFrame, rewrite:bool=False) -> None:
 
 def query_local(
     chemicals:pd.DataFrame, 
-    local_db_file:Optional[str]=None,
+    filename:Optional[str]=None,
     result_columns:List[str] = ["Name_db", "SMILES_db", "cid_db", "sdf_db"],
     verbose:bool = False
 ) -> List[int]:
@@ -219,8 +219,9 @@ def query_local(
 
     kwargs = locals()
     kwargs.pop("chemicals")
-
-    chemicals_db = pd.read_csv(local_db_file, encoding='ANSI', index_col=0)
+    
+    filename = filename if filename else get_configs_local_db("filename")
+    chemicals_db = pd.read_csv(filename, encoding='ANSI', index_col=0)
     chemicals_db = chemicals_db.fillna("")
 
     assert len(chemicals) == len(chemicals_db)

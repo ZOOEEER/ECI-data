@@ -2,17 +2,30 @@
 import os
 import time
 import json
+from tqdm import tqdm
 import requests
 import logging
 import pandas as pd
 from typing import List, Tuple, Optional, Union
 
 
-import util_func
+from . import util_func
+
+#########
+#
+# Util_functions
+#
+#########
+
+def formalize(sequence:str) -> str:
+    alphabet = "AFCDNEQGHLIKMPRSTVWY"
+    return "".join( i for i in sequence.upper() if i in alphabet)
+
 
 #########
 #
 # swiss-model API
+# Ref: https://swissmodel.expasy.org/api-docs/
 #
 #########
 
@@ -32,12 +45,19 @@ def get_swiss_model_configs():
         }
     }
 
-def submit_project(sequence:str = "", *args, **kwargs):
+
+def submit_project(sequence:Union[str, List[str]] = "", *args, **kwargs):
     configs = get_swiss_model_configs()
-    data = {
-        "target_sequences": sequence,
-        "project_title": f"{util_func.md5(sequence + str(time.time))}"
-    }
+    if isinstance(sequence, str):
+        data = {
+            "target_sequences": sequence,
+            "project_title": f"{util_func.md5(sequence + str(time.time))}"
+        }
+    elif isinstance(sequence, list):
+        data = {
+            "target_sequences": sequence,
+            "project_title": f"{util_func.md5(sequence[0] + str(time.time))}"
+        }
     url = configs["host"] + configs["urls"]["automodel"]
     project_info = None
     body = _requests_post(url, data, *args, **kwargs)
@@ -57,11 +77,14 @@ def get_project_result(project_id:str, *args, **kwargs) -> dict:
     return project_info
 
 def dump_project_info(path:str, project_info:dict, verbose:bool=False, *args, **kwargs) -> None:
-    with open(path, 'w') as f:
-        json.dump(project_info, f, ensure_ascii=True, indent=4, )
-    status = project_info["status"] if "status" in project_info.keys() else ""
-    if verbose:
-        logging.info(f'Save the project({project_info["project_id"]}, {status}) info to {path}.')
+    if project_info:
+        with open(path, 'w') as f:
+            json.dump(project_info, f, ensure_ascii=True, indent=4, )
+        status = project_info["status"] if "status" in project_info.keys() else ""
+        if verbose:
+            logging.info(f'Save the project({project_info["project_id"]}, {status}) info to {path}.')
+    else:
+        path = None
     return path
 
 def download_model(path:str, project_id:str, model_id:int=1, verbose:bool=False, *args, **kwargs) -> None:
@@ -74,6 +97,8 @@ def download_model(path:str, project_id:str, model_id:int=1, verbose:bool=False,
             f.write(body.text)
         if verbose:
             logging.info(f"Save the model {model_id} to {path}.")
+    else:
+        path = None
     return path
 
 def _requests_post(url:str, data:dict, verbose:bool=False, *args, **kwargs) -> requests.models.Response:
@@ -121,19 +146,37 @@ def query_enzymes(
     if pdbdir is None:
         pdbdir = os.getcwd()
 
-    for column in ["project_id", "pdb"]:
+    for column in ["project_id", "json", "pdb"]:
         if not column in enzymes.columns:
             enzymes[column] = ""
 
+    sec = 3
+    model_id = 1
     for i in tqdm(range(len(enzymes))):
-        sequence = enzymes.loc[i, "sequence"]
+        sequence = enzymes.loc[i, "Sequence"]
         project_id = enzymes.loc[i, "project_id"]
-        if project_id == "":
+        json_path = enzymes.loc[i, "json"] # save the COMPLETE project json.
+        pdb_path = enzymes.loc[i, "pdb"] # save the pdb file
+        if not project_id:
             project_info = submit_project(sequence = sequence, *args, **kwargs)
-            enzymes.loc[i, "project_id"] = project_info["project_id"]
+            time.sleep(sec)
+            if project_info and "project_id" in project_info.keys():
+                enzymes.loc[i, "project_id"] = project_info["project_id"]
         else:
-            project_info = get_project_result(project_id = project_id, *args, **kwargs)
-            if len(project_info["models"]):
-                model_id = 0
-                download_model(path = os.path.join(pdbdir, f"{i}.pdb"), project_id = project_id, model_id = model_id, *args, **kwargs)
-        dump_project_info(path = os.path.join(pdbdir, f"{i}.json"), project_info = project_info, *args, **kwargs)
+            path = json_path if json_path else os.path.join(pdbdir, f"{i}.json")
+            if not os.path.exists(path):
+                project_info = get_project_result(project_id = project_id, *args, **kwargs)
+                time.sleep(sec)
+                if project_info and "models" in project_info and len(project_info["models"]):
+                    path = dump_project_info(path = path, project_info = project_info, *args, **kwargs)
+                    enzymes.loc[i, "json"] = path
+            else:
+                enzymes.loc[i, "json"] = path
+            if enzymes.loc[i, "json"]:
+                path = pdb_path if pdb_path else os.path.join(pdbdir, f"{i}.pdb")
+                if not os.path.exists(path):
+                    path = download_model(path = path, project_id = project_id, model_id = model_id, *args, **kwargs)
+                    time.sleep(sec)
+                    enzymes.loc[i, "pdb"] = path
+                else:
+                    enzymes.loc[i, "pdb"] = path
