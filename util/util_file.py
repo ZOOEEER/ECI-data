@@ -186,6 +186,7 @@ def writemeta() -> None:
         (enu): enumerate
         (bol): bool
         (int): int
+        (smart): SMART
 
     """
     meta = {
@@ -208,11 +209,11 @@ def writemeta() -> None:
             "chemical criteria": "(str) criteria for compounds used for activity screens",
 
             # activity
-            "activity reaction": "(str) the reaction type",
+            "activity reaction": "(smart) the reaction type",
             "activity unit": "(enu) unit of the data if any",
             "activity property": "(str) the property name to characterize activity, for example, conversion(%) ",
-            "activity definition": "(str) the numerical definition of the activity from reaction time-course"
-
+            "activity definition": "(str) the numerical definition of the activity from reaction time-course",
+            "activity condition": "(str) The assay condition. For example ,the pH, temperature, substrate , additives and so on."
         },
         "statistic":{
             "number_of_chemical": "(int) calculated from the enzymes.csv file",

@@ -1,5 +1,6 @@
 
 import os
+import sys
 import time
 import json
 from tqdm import tqdm
@@ -8,8 +9,9 @@ import logging
 import pandas as pd
 from typing import List, Tuple, Optional, Union
 
+sys.path.append(os.getcwd()) # temporary
+from . import util_chem, util_func
 
-from . import util_func
 
 #########
 #
@@ -131,9 +133,11 @@ def _requests_get(url:str, verbose:bool=False, *args, **kwargs) -> requests.mode
             logging.info(f"Unknown error.")
     return body
 
+
 def query_enzymes(
     enzymes:pd.DataFrame,
     pdbdir:Optional[str] = None,
+    sec_sleep:int = 3,
     *args, **kwargs
 ):
     """
@@ -150,7 +154,6 @@ def query_enzymes(
         if not column in enzymes.columns:
             enzymes[column] = ""
 
-    sec = 3
     model_id = 1
     for i in tqdm(range(len(enzymes))):
         sequence = enzymes.loc[i, "Sequence"]
@@ -159,14 +162,14 @@ def query_enzymes(
         pdb_path = enzymes.loc[i, "pdb"] # save the pdb file
         if not project_id:
             project_info = submit_project(sequence = sequence, *args, **kwargs)
-            time.sleep(sec)
+            time.sleep(sec_sleep)
             if project_info and "project_id" in project_info.keys():
                 enzymes.loc[i, "project_id"] = project_info["project_id"]
         else:
             path = json_path if json_path else os.path.join(pdbdir, f"{i}.json")
             if not os.path.exists(path):
                 project_info = get_project_result(project_id = project_id, *args, **kwargs)
-                time.sleep(sec)
+                time.sleep(sec_sleep)
                 if project_info and "models" in project_info and len(project_info["models"]):
                     path = dump_project_info(path = path, project_info = project_info, *args, **kwargs)
                     enzymes.loc[i, "json"] = path
@@ -176,7 +179,154 @@ def query_enzymes(
                 path = pdb_path if pdb_path else os.path.join(pdbdir, f"{i}.pdb")
                 if not os.path.exists(path):
                     path = download_model(path = path, project_id = project_id, model_id = model_id, *args, **kwargs)
-                    time.sleep(sec)
+                    time.sleep(sec_sleep)
                     enzymes.loc[i, "pdb"] = path
                 else:
                     enzymes.loc[i, "pdb"] = path
+
+
+#########
+#
+# Entrez API
+#
+#########
+
+from Bio import Entrez
+from Bio import SeqIO
+Entrez.email = "664104464@qq.com" # your valid email for NCBI's information.
+
+def _get_entrez_configs(config_name:str):
+    return {
+        "default_fasta": '>none\nM\n\n',
+        "records_to_keep": 0, # the first one
+        "url_rest": "https://rest.uniprot.org/uniprotkb/{}.fasta",
+        "default_rest": "",
+        "url_unisave": "https://rest.uniprot.org/unisave/{}?format=fasta&versions=1",
+        "default_unisave": ""
+    }[config_name]
+
+def fetch_sequence_by_rest(uniprot_id:str, url_string:str="rest", verbose:bool=False, sec_sleep:int=3, *args, **kwargs) -> str:
+    fasta = _get_entrez_configs("default_fasta")
+    url = _get_entrez_configs(f"url_{url_string}").format(uniprot_id)
+    try:
+        body = requests.get(url)
+
+        time.sleep(sec_sleep)
+        if body.status_code in [200]:
+            fasta = body.content.decode()
+            if fasta == _get_entrez_configs(f"default_{url_string}"):
+                fasta = _get_entrez_configs("default_fasta")
+            if verbose:
+                logging.info(f"Querying the {url}. Return Results length: {len(fasta)}")
+        else:
+            logging.info(f"Querying the {url}. The status_code: {body.status_code}")
+    except Exception as e:
+        logging.info(f"Something error: {e}")
+    return fasta
+
+
+def fetch_sequence_by_entrez(uniprot_id:str, verbose:bool=False, sec_sleep:int=3, *args, **kwargs) -> str:
+    fasta = _get_entrez_configs("default_fasta")
+    handle = Entrez.esearch(db="Protein", term = "{}".format(uniprot_id))
+    record = Entrez.read(handle)
+    results_count = len(record["IdList"])
+    time.sleep(sec_sleep)
+    if verbose:
+        logging.info(f"Search the uniprot db: {uniprot_id}. Return {results_count} results.")
+    if results_count:
+        id = record["IdList"][_get_entrez_configs("records_to_keep")]
+        handle = Entrez.efetch(db="Protein", id = id, rettype = "fasta", retmode = "text")
+        time.sleep(sec_sleep)
+        fasta = handle.read()
+    return fasta
+
+
+def fetch_sequence(uniprot_id:str, *args, **kwargs) -> str:
+    """
+    return the fasta string
+    """
+    fasta = fetch_sequence_by_rest(uniprot_id, "rest", *args, **kwargs)
+    if fasta == _get_entrez_configs("default_fasta"):
+        fasta = fetch_sequence_by_rest(uniprot_id, "unisave", *args, **kwargs)
+    if fasta == _get_entrez_configs("default_fasta"):
+        fasta = fetch_sequence_by_entrez(uniprot_id, *args, **kwargs)
+
+    return fasta
+
+def fetch_sequences(uniprot_ids:list[str], *args, **kwargs) -> List[str]:
+    """
+    return a list of fasta strings
+    """
+    fastas = []
+    for uniprot_id in uniprot_ids:
+        fasta = fetch_sequence(uniprot_id, *args, **kwargs)
+        fastas.append(fasta)
+    return fastas
+
+
+# ##############
+#
+# human-in-loop (query local database)
+#
+# ##############
+
+def get_configs_local_db(config_name:str) -> Union[str, list]:
+    return {
+        "filename": "enzymes_local_db.csv",
+        "columns_key": ["Name"],
+        "columns_query": ["Name", "Annotation", "Sequence"],
+        "columns_db": ["Name_db", "Annotation_db", "Sequence_db"]
+    }[config_name]
+
+def get_map_local_db(result_column:str) -> str:
+    """
+    how to map the local_db's content to the table
+    """
+    return {
+        "Name_db": "Name",
+        "Annotation_db": "Annotation",
+        "Sequence_db": "Sequence",
+    }[result_column]
+
+def make_local_db(enzymes:pd.DataFrame, *args, **kwargs) -> None:
+    """
+
+    """
+    filename = util_chem._make_local_db(
+        df = enzymes, 
+        get_configs_local_db_func = get_configs_local_db, 
+        *args, **kwargs
+    )
+    return filename
+
+def query_local(
+    enzymes:pd.DataFrame, 
+    filename:Optional[str]=None,
+    result_columns:List[str] = get_configs_local_db("columns_db"),
+    *args, **kwargs
+) -> List[int]:
+    """
+    Map the enzymes_db to enzymes
+    """
+    util_chem._query_local(
+        df = enzymes,
+        filename = filename if filename else get_configs_local_db("filename"),
+        result_columns = result_columns,
+        get_map_local_db_func = get_map_local_db,
+        *args, **kwargs
+    )
+
+
+#########
+#
+# Util function
+#
+#########
+
+def fasta2pd(path:str, *args, **kwargs) -> pd.DataFrame:
+    with open(path, "r") as f:
+        annotation_sequence = pd.DataFrame(
+            [ i for i in SeqIO.FastaIO.SimpleFastaParser(f)],
+             columns=["Annotation","Sequence"]
+        )
+    return annotation_sequence

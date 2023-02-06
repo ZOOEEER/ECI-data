@@ -10,10 +10,11 @@
         "enzyme criteria": "(str) screening criteria for proteins used for activity screens",
         "chemical family": "(str) chemical family",
         "chemical criteria": "(str) criteria for compounds used for activity screens",
-        "activity reaction": "(str) the reaction type",
+        "activity reaction": "(smart) the reaction type",
         "activity unit": "(enu) unit of the data if any",
         "activity property": "(str) the property name to characterize activity, for example, conversion(%) ",
-        "activity definition": "(str) the numerical definition of the activity from reaction time-course"
+        "activity definition": "(str) the numerical definition of the activity from reaction time-course",
+        "activity condition": "(str) The assay condition. For example ,the pH, temperature, substrate , additives and so on."
     },
     "statistic": {
         "number_of_chemical": "(int) calculated from the enzymes.csv file",

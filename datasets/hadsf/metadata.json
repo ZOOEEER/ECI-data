@@ -1,0 +1,44 @@
+{
+    "basic": {
+        "dataset description": "(str) A brief description of the dataset",
+        "literature doi": "(str) doi of the literature",
+        "literature field": "(enu) industrial or physiological",
+        "literature goal": "(str) goal of the experiment",
+        "enzyme ec": "(int) the first digit of the enzyme commission number",
+        "enzyme name": "(str) enzyme name",
+        "enzyme superfamily": "(str) superfamily of proteins",
+        "enzyme criteria": "(str) screening criteria for proteins used for activity screens",
+        "chemical family": "(str) chemical family",
+        "chemical criteria": "(str) criteria for compounds used for activity screens",
+        "activity reaction": "(str) the reaction type",
+        "activity unit": "(enu) unit of the data if any",
+        "activity property": "(str) the property name to characterize activity, for example, conversion(%) ",
+        "activity definition": "(str) the numerical definition of the activity from reaction time-course"
+    },
+    "statistic": {
+        "number_of_chemical": "(int) calculated from the enzymes.csv file",
+        "number_of_enzyme": "(int) calculated from the chemicals.csv file",
+        "number_of_activity": "(int) number_of_chemical * number_of_enzyme"
+    },
+    "experiment": {
+        "organism": "(str) source of the enzymes",
+        "purified": "(enu) one of Purified, Raw of Cell",
+        "high throughput": "(bol) A boolean value",
+        "high throughput technology": "(str) how to achieve high-throughput assays",
+        "activity indicator": "(str) how the activity is indicated",
+        "activity instrument": "(str) instruments used for activity measurement, for example, LC-MS"
+    },
+    "model": {
+        "type": "(enu) one of Machine Learning, Sequence Alignment, Mechanistic Factor, Correlation Analysis",
+        "description": "(str) what the model is and how the model is constructed",
+        "enzyme descriptors": "(str) descriptors of enzymes used to construct the model",
+        "chemical descriptors": "(str) descriptors of chemicals used to construct the model",
+        "activity preprocess": "(str) how the activity data is pre-processed for the model input"
+    },
+    "process": {
+        "source of enzymes": "(str) where to get enzymes' information",
+        "source of chemicals": "(str) where to get chemicals' information",
+        "source of activity": "(str) where to get the activity information",
+        "curation": "(str) the data curation process"
+    }
+}

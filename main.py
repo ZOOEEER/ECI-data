@@ -62,7 +62,8 @@ if __name__ == "__main__":
         "test": args.t,
         "dataset_names": ["test"],
         "debug": args.l,
-        "online": args.o
+        "online": args.o,
+        "sec_sleep": 3,
     }
     if not args.t:
         kwargs["dataset_names"] = [args.n]

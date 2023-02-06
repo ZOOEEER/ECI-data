@@ -19,6 +19,12 @@ Show the meta data for one dataset.
 python main.py -m [dataset_name]
 ```
 
+Test the codes.
+
+```
+python main.py -t [-v]
+```
+
 
 
 # File Organization
@@ -63,15 +69,16 @@ The entries of meta data could be divided into five categories.
 
 ## Datasets
 
-Here are 0 datasets now. Run the code to make the statistical table below, as the `statistic.csv` file.
+Here are 2 datasets now. Run the code to make the statistical table below, as the `statistic.csv` file.
 
 ```
 python main.py -s
 ```
 
-| Dataset  | Description | #enzymes | #chemicals | #activity |
-| -------- | ----------- | -------- | ---------- | --------- |
-| esterase |             | 147      | 96         | 14112     |
+| Dataset  |                      Description                       |                  Reaction                  |  #E  |  #C  |  #A   |
+| :------: | :----------------------------------------------------: | :----------------------------------------: | :--: | :--: | :---: |
+| esterase | A broad ester library to a broad esterase collections. | ![esterase](.\media\reaction\esterase.png) | 147  |  96  | 14112 |
+|  hadsf   |                                                        |                                            | 216  | 167  | 36072 |
 
 
 
@@ -98,7 +105,7 @@ python main.py -n [dataset_name] [-v]
 
 The `main.py` will call the `parse()` function in the `parse_[dataset_name].py` to curate the data. Feel free to change the code in `parse_[dataset_name].py` and output finally the desired files.
 
-The operation of accessing the online server, such as submitting a task to Swiss-model, needs to wait for a period of time before accessing it to obtain content. Run the following commands to update table information and download files.
+The operation of accessing the online server, such as submitting a task to Swiss-model, needs to wait for a period of time before accessing it to obtain content. Run the following command to update the table information and download files.
 
 ```python
 python main.py -o [dataset_name] [-v]

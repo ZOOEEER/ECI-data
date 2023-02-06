@@ -1,0 +1,753 @@
+{
+    "project_id": "uJTPsA",
+    "target_sequences": [
+        "MGTVNRAVFLDRDGVINKDHGYVHQVDDFEYIEGVFEACLALKQQGYKLVVVTNQSGIARGMYTEDQFHSLTEWMDWNFADKGVDLDGIYYCPHHNEKGIGEYKVDCDCRKPKPGMLIDAAKFLKIDLSQSVMVGDKTDDMLAAKAAGVPTRILVRTGKAIADESDASVVLDSIADVPAFLKNHKAS"
+    ],
+    "status": "COMPLETED",
+    "message": "running HHblits against SMTL\nreusing cached query alignment\npredicting residue burial status with ACCpro\nsearching PDB profile database with previously built query profile\nrunning BLAST against SMTL\nextracting distance constraints from 1056 templates\nfiltering list of templates\nstructurally superpose templates\npredicting oligomeric state conservation\nselect templates for modelling\nbuilding model 1\nassessing model quality of model 1 with QMEAN\nbuilding model 2\nassessing model quality of model 2 with QMEAN\n",
+    "date_created": "2023-02-06T07:43:09.191023Z",
+    "models": [
+        {
+            "built_with": "ProMod3 3.2.1",
+            "coverage": 0.9839572310447693,
+            "excluded_ligands": [
+                {
+                    "description": "ACETIC ACID",
+                    "ligands": [
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "2"
+                        }
+                    ],
+                    "name": "ACY"
+                }
+            ],
+            "gmqe": 0.8702902053818449,
+            "included_ligands": [
+                {
+                    "count": 1,
+                    "description": "ZINC ION",
+                    "name": "ZN"
+                }
+            ],
+            "json_version": "0.1",
+            "major_issues": null,
+            "model_id": "01",
+            "oligo_based_on": "prediction",
+            "oligo_state": "monomer",
+            "pdb_release": "2023-01-27",
+            "qmean_global": {
+                "acc_agreement_norm_score": 0.521978021978022,
+                "acc_agreement_z_score": -1.3963655405389415,
+                "avg_local_score": 0.8359930928067353,
+                "avg_local_score_error": 0.063,
+                "cbeta_norm_score": -0.01401229641399638,
+                "cbeta_z_score": 0.06499428518471684,
+                "interaction_norm_score": -0.02218748348049313,
+                "interaction_z_score": -0.5325849341726098,
+                "packing_norm_score": -0.38534816624059415,
+                "packing_z_score": 0.19255443010390066,
+                "qmean4_norm_score": 0.7597952978849557,
+                "qmean4_z_score": -0.49682977026701,
+                "qmean6_norm_score": 0.7414892761156955,
+                "qmean6_z_score": -0.8628292771528767,
+                "ss_agreement_norm_score": 0.7085649239329191,
+                "ss_agreement_z_score": 0.3107390874806871,
+                "torsion_norm_score": -0.26611009463890234,
+                "torsion_z_score": -0.5894439925845638
+            },
+            "sequence_identity": 59.239131927490234,
+            "sequence_similarity": 0.4804346263408661,
+            "smtl_version": "2023-02-01",
+            "status": "COMPLETED",
+            "targets": [
+                {
+                    "model_chains": [
+                        {
+                            "dssp": "--CCBCEEEECSBTTTBCCSSSCCSSTTCCBCTTHHHHHHHHHHTTCEEEEEEECGGGGTTSSCHHHHHHHHHHHHHHHHHTTCCCSEEEEECCBSSCSSGGGBBCCSSSTTSCHHHHHHHHHHTBCGGGCEEEESSHHHHHHHHHTTCSEEEEESSSCTTCCSSSCSEEESCGGGHHHHHHTC",
+                            "id": "A",
+                            "qmean": [
+                                null,
+                                null,
+                                0.72,
+                                0.79,
+                                0.81,
+                                0.79,
+                                0.92,
+                                0.92,
+                                0.92,
+                                0.92,
+                                0.91,
+                                0.85,
+                                0.89,
+                                0.91,
+                                0.92,
+                                0.9,
+                                0.89,
+                                0.87,
+                                0.85,
+                                0.83,
+                                0.84,
+                                0.82,
+                                0.84,
+                                0.82,
+                                0.77,
+                                0.8,
+                                0.76,
+                                0.8,
+                                0.84,
+                                0.84,
+                                0.88,
+                                0.89,
+                                0.85,
+                                0.92,
+                                0.91,
+                                0.88,
+                                0.84,
+                                0.93,
+                                0.92,
+                                0.89,
+                                0.92,
+                                0.9,
+                                0.85,
+                                0.83,
+                                0.83,
+                                0.89,
+                                0.88,
+                                0.86,
+                                0.91,
+                                0.93,
+                                0.93,
+                                0.93,
+                                0.91,
+                                0.88,
+                                0.85,
+                                0.84,
+                                0.86,
+                                0.78,
+                                0.68,
+                                0.72,
+                                0.82,
+                                0.81,
+                                0.84,
+                                0.85,
+                                0.81,
+                                0.81,
+                                0.79,
+                                0.84,
+                                0.82,
+                                0.84,
+                                0.84,
+                                0.85,
+                                0.81,
+                                0.81,
+                                0.8,
+                                0.83,
+                                0.78,
+                                0.8,
+                                0.84,
+                                0.86,
+                                0.8,
+                                0.8,
+                                0.86,
+                                0.86,
+                                0.85,
+                                0.89,
+                                0.88,
+                                0.91,
+                                0.89,
+                                0.88,
+                                0.88,
+                                0.88,
+                                0.85,
+                                0.72,
+                                0.56,
+                                0.65,
+                                0.65,
+                                0.66,
+                                0.75,
+                                0.74,
+                                0.73,
+                                0.74,
+                                0.73,
+                                0.68,
+                                0.74,
+                                0.69,
+                                0.8,
+                                0.82,
+                                0.88,
+                                0.81,
+                                0.85,
+                                0.87,
+                                0.84,
+                                0.89,
+                                0.88,
+                                0.86,
+                                0.89,
+                                0.87,
+                                0.87,
+                                0.91,
+                                0.89,
+                                0.81,
+                                0.83,
+                                0.84,
+                                0.79,
+                                0.85,
+                                0.86,
+                                0.87,
+                                0.86,
+                                0.82,
+                                0.89,
+                                0.92,
+                                0.9,
+                                0.93,
+                                0.92,
+                                0.87,
+                                0.82,
+                                0.85,
+                                0.85,
+                                0.86,
+                                0.85,
+                                0.87,
+                                0.89,
+                                0.91,
+                                0.85,
+                                0.9,
+                                0.9,
+                                0.9,
+                                0.9,
+                                0.82,
+                                0.87,
+                                0.81,
+                                0.88,
+                                0.87,
+                                0.88,
+                                0.78,
+                                0.86,
+                                0.86,
+                                0.75,
+                                0.78,
+                                0.49,
+                                0.47,
+                                0.59,
+                                0.76,
+                                0.79,
+                                0.84,
+                                0.87,
+                                0.86,
+                                0.87,
+                                0.86,
+                                0.86,
+                                0.85,
+                                0.88,
+                                0.9,
+                                0.92,
+                                0.89,
+                                0.9,
+                                0.89,
+                                0.87,
+                                0.84,
+                                0.83,
+                                0.75,
+                                0.74,
+                                0.7,
+                                null,
+                                null,
+                                null
+                            ],
+                            "residue_from": "3",
+                            "residue_to": "184",
+                            "templates": [
+                                {
+                                    "alignment": {
+                                        "target_sequence": "MGTVNRAVFLDRDGVINKDHGYVHQVDDFEYIEGVFEACLALKQQGYKLVVVTNQSGIARGMYTEDQFHSLTEWMDWNFADKGVDLDGIYYCPHHNEKGIGEYKVDCDCRKPKPGMLIDAAKFLKIDLSQSVMVGDKTDDMLAAKAAGVPTRILVRTGKAIAD--ESDASVVLDSIADVPAFLKNHKAS",
+                                        "template_sequence": "MAKSVPAIFLDRDGTINVDHGYVHEIDNFEFIDGVIDAMRELKKMGFALVVVTNQSGIARGKFTEAQFETLTEWMDWSLADRDVDLDGIYYCPHHPQGSVEEFRQVCDCRKPHPGMLLSARDYLHIDMAASYMVGDKLEDMQAAVAANVGTKVLVRTGKPITPEAENAADWVLNSLADLPQAIKKQ---"
+                                    },
+                                    "coverage": 0.9839572310447693,
+                                    "description": "D,D-heptose 1,7-bisphosphate phosphatase",
+                                    "found_by": "HHblits",
+                                    "gmqe": 0.8691967129707336,
+                                    "method": "X-RAY DIFFRACTION",
+                                    "offset": 0,
+                                    "oligo_state": "monomer",
+                                    "qualified_name": "3l8e.1.A",
+                                    "resolution": 1.6399999856948853,
+                                    "sequence_identity": 59.239131927490234,
+                                    "sequence_similarity": 0.4804346263408661,
+                                    "short_method": "X-ray",
+                                    "title": "Crystal Structure of apo form of D,D-heptose 1.7-bisphosphate phosphatase from E. Coli"
+                                }
+                            ]
+                        }
+                    ],
+                    "target_sequence": "MGTVNRAVFLDRDGVINKDHGYVHQVDDFEYIEGVFEACLALKQQGYKLVVVTNQSGIARGMYTEDQFHSLTEWMDWNFADKGVDLDGIYYCPHHNEKGIGEYKVDCDCRKPKPGMLIDAAKFLKIDLSQSVMVGDKTDDMLAAKAAGVPTRILVRTGKAIADESDASVVLDSIADVPAFLKNHKAS",
+                    "target_sequence_annotations": {
+                        "psipred": "CCCCCEEEEECCCCCEECCCCCCCCCCCEEEECCHHHHHHHHHHCCCEEEEEECCCCCCCCCCCHHHHHHHHHHHHHHHHCCCCCCCEEEECCCCCCCCCCCCCCCCCCCCCCHHHHHHHHHHCCCCCCCEEEEECCHHHHHHHHHCCCCEEEEEECCCCCCCCCCCCEEECCHHHHHHHHHHHHCC"
+                    }
+                }
+            ],
+            "coordinates_url": "https://swissmodel.expasy.org/project/uJTPsA/models/01.pdb.gz"
+        },
+        {
+            "built_with": "ProMod3 3.2.1",
+            "coverage": 0.8074866533279419,
+            "excluded_ligands": [
+                {
+                    "description": "GLYCEROL",
+                    "ligands": [
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "8"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "9"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "10"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "11"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "19"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "20"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "21"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "22"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "30"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "31"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "32"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "33"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "41"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "42"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "43"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "44"
+                        }
+                    ],
+                    "name": "GOL"
+                },
+                {
+                    "description": "MAGNESIUM ION",
+                    "ligands": [
+                        {
+                            "exclusion_reason": "Binding site not conserved.",
+                            "number": "6"
+                        },
+                        {
+                            "exclusion_reason": "Binding site not conserved.",
+                            "number": "7"
+                        },
+                        {
+                            "exclusion_reason": "Binding site not conserved.",
+                            "number": "17"
+                        },
+                        {
+                            "exclusion_reason": "Binding site not conserved.",
+                            "number": "18"
+                        },
+                        {
+                            "exclusion_reason": "Binding site not conserved.",
+                            "number": "28"
+                        },
+                        {
+                            "exclusion_reason": "Binding site not conserved.",
+                            "number": "29"
+                        },
+                        {
+                            "exclusion_reason": "Binding site not conserved.",
+                            "number": "39"
+                        },
+                        {
+                            "exclusion_reason": "Binding site not conserved.",
+                            "number": "40"
+                        }
+                    ],
+                    "name": "MG"
+                },
+                {
+                    "description": "SULFATE ION",
+                    "ligands": [
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "1"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "2"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "3"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "4"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "5"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "12"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "13"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "14"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "15"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "16"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "23"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "24"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "25"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "26"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "27"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "34"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "35"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "36"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "37"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "38"
+                        }
+                    ],
+                    "name": "SO4"
+                }
+            ],
+            "gmqe": 0.3130538115127232,
+            "included_ligands": [],
+            "json_version": "0.1",
+            "major_issues": null,
+            "model_id": "02",
+            "oligo_based_on": "prediction",
+            "oligo_state": "monomer",
+            "pdb_release": "2023-01-27",
+            "qmean_global": {
+                "acc_agreement_norm_score": 0.48717948717948717,
+                "acc_agreement_z_score": -1.7733724837409994,
+                "avg_local_score": 0.3960733248228906,
+                "avg_local_score_error": 0.066,
+                "cbeta_norm_score": 0.012198040598010405,
+                "cbeta_z_score": -4.895300181393162,
+                "interaction_norm_score": -0.008771497976713597,
+                "interaction_z_score": -2.70862209340725,
+                "packing_norm_score": -0.2504337304749359,
+                "packing_z_score": -1.712525078364088,
+                "qmean4_norm_score": 0.5676295726626812,
+                "qmean4_z_score": -4.219740066874922,
+                "qmean6_norm_score": 0.4694265322448313,
+                "qmean6_z_score": -5.985207464679173,
+                "ss_agreement_norm_score": -0.08815959124610974,
+                "ss_agreement_z_score": -5.015785424018941,
+                "torsion_norm_score": 0.050036462765236045,
+                "torsion_z_score": -2.6779039498771247
+            },
+            "sequence_identity": 16.556291580200195,
+            "sequence_similarity": 0.26975730061531067,
+            "smtl_version": "2023-02-01",
+            "status": "COMPLETED",
+            "targets": [
+                {
+                    "model_chains": [
+                        {
+                            "dssp": "--------------------------CCCCCCTHHHHHHHHHHHTTSCCEEEESSCHHHHHHHHHHHSTTGGGGCSEEEECSSGGGTTGGGTTCCCCCCTTCSSCCCCTTSCCCSSHHHHHHHHTCCGGGCCCEESSHHHHHHHHHHTCCSCEECCGGGGGCCTTTTHHHHHHHHHHHHHHC",
+                            "id": "A",
+                            "qmean": [
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                0.27,
+                                0.3,
+                                0.18,
+                                0.25,
+                                0.21,
+                                0.32,
+                                0.32,
+                                0.48,
+                                0.48,
+                                0.44,
+                                0.51,
+                                0.63,
+                                0.57,
+                                0.56,
+                                0.59,
+                                0.59,
+                                0.54,
+                                0.52,
+                                0.54,
+                                0.52,
+                                0.46,
+                                0.51,
+                                0.5,
+                                0.47,
+                                0.5,
+                                0.55,
+                                0.5,
+                                0.46,
+                                0.4,
+                                0.39,
+                                0.38,
+                                0.36,
+                                0.43,
+                                0.34,
+                                0.39,
+                                0.31,
+                                0.33,
+                                0.42,
+                                0.31,
+                                0.26,
+                                0.3,
+                                0.31,
+                                0.34,
+                                0.4,
+                                0.43,
+                                0.42,
+                                0.39,
+                                0.32,
+                                0.4,
+                                0.35,
+                                0.34,
+                                0.35,
+                                0.29,
+                                0.35,
+                                0.32,
+                                0.3,
+                                0.26,
+                                0.25,
+                                0.27,
+                                0.2,
+                                0.25,
+                                0.34,
+                                0.34,
+                                0.31,
+                                0.32,
+                                0.34,
+                                0.28,
+                                0.25,
+                                0.23,
+                                0.3,
+                                0.32,
+                                0.29,
+                                0.36,
+                                0.26,
+                                0.27,
+                                0.29,
+                                0.22,
+                                0.31,
+                                0.3,
+                                0.31,
+                                0.35,
+                                0.3,
+                                0.29,
+                                0.23,
+                                0.27,
+                                0.38,
+                                0.36,
+                                0.37,
+                                0.42,
+                                0.43,
+                                0.47,
+                                0.43,
+                                0.5,
+                                0.49,
+                                0.53,
+                                0.48,
+                                0.43,
+                                0.46,
+                                0.54,
+                                0.54,
+                                0.48,
+                                0.59,
+                                0.62,
+                                0.47,
+                                0.55,
+                                0.67,
+                                0.58,
+                                0.72,
+                                0.68,
+                                0.6,
+                                0.59,
+                                0.54,
+                                0.56,
+                                0.56,
+                                0.55,
+                                0.51,
+                                0.45,
+                                0.58,
+                                0.54,
+                                0.55,
+                                0.47,
+                                0.64,
+                                0.66,
+                                0.39,
+                                0.63,
+                                0.49,
+                                0.68,
+                                0.59,
+                                0.52,
+                                0.43,
+                                0.38,
+                                0.21,
+                                0.27,
+                                0.23,
+                                0.28,
+                                0.3,
+                                0.42,
+                                0.4,
+                                0.3,
+                                0.3,
+                                0.28,
+                                0.19,
+                                0.19,
+                                0.23,
+                                0.18,
+                                0.21,
+                                0.23,
+                                0.17,
+                                0.19,
+                                0.34,
+                                0.32,
+                                0.25,
+                                0.29,
+                                0.23,
+                                0.35,
+                                0.3,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null
+                            ],
+                            "residue_from": "27",
+                            "residue_to": "182",
+                            "templates": [
+                                {
+                                    "alignment": {
+                                        "target_sequence": "MGTVNRAVFLDRDGVINKDHGYVHQVDDFEYIEGVFEACLALKQQGYKLVVVTNQSGIARGMYTEDQF------------HSLTEWMDWNFADKGVDLDGIYYCPHHNEKG----IGEY--KVDCDCRKPK----PGMLIDAAKFLKIDLSQSVMVGDKT-DDMLAAK-AAGVPTRILVRTGKAIAD--ESDASVVLDSIADVPAFLKNHKAS",
+                                        "template_sequence": "--------------------------KYVVKDGKLPLLLSRMKEVG-KVFLATNSDYKYTDKIMTYLFDFPHGPKPGSSHRPWQSYFDLILVDARKP---LFFGEGTVLRQVDTKTGKLKIGTYTGPLQHGIVYSGGSSDTICDLLGAKGKDILYIGDHIFGDILKSKKRQGWRT-FLVIPELAQELHVWTDKSSLFEELQSLDIFLA-----"
+                                    },
+                                    "coverage": 0.8074866533279419,
+                                    "description": "Cytosolic purine 5'-nucleotidase",
+                                    "found_by": "HHblits",
+                                    "gmqe": 0.3454069197177887,
+                                    "method": "X-RAY DIFFRACTION",
+                                    "offset": 223,
+                                    "oligo_state": "monomer",
+                                    "qualified_name": "6fxh.1.A",
+                                    "resolution": 2.299999952316284,
+                                    "sequence_identity": 16.556291580200195,
+                                    "sequence_similarity": 0.26975730061531067,
+                                    "short_method": "X-ray",
+                                    "title": "Human cytosolic 5'-nucleotidase II soaked with 10mM 3-Phenyl-N-(9H-purin-6-yl)benzamide"
+                                }
+                            ]
+                        }
+                    ],
+                    "target_sequence": "MGTVNRAVFLDRDGVINKDHGYVHQVDDFEYIEGVFEACLALKQQGYKLVVVTNQSGIARGMYTEDQFHSLTEWMDWNFADKGVDLDGIYYCPHHNEKGIGEYKVDCDCRKPKPGMLIDAAKFLKIDLSQSVMVGDKTDDMLAAKAAGVPTRILVRTGKAIADESDASVVLDSIADVPAFLKNHKAS",
+                    "target_sequence_annotations": {
+                        "psipred": "CCCCCEEEEECCCCCEECCCCCCCCCCCEEEECCHHHHHHHHHHCCCEEEEEECCCCCCCCCCCHHHHHHHHHHHHHHHHCCCCCCCEEEECCCCCCCCCCCCCCCCCCCCCCHHHHHHHHHHCCCCCCCEEEEECCHHHHHHHHHCCCCEEEEEECCCCCCCCCCCCEEECCHHHHHHHHHHHHCC"
+                    }
+                }
+            ],
+            "coordinates_url": "https://swissmodel.expasy.org/project/uJTPsA/models/02.pdb.gz"
+        }
+    ],
+    "project_title": "de42c95a3dca3dbf3513f0be528da4ea",
+    "view_url": "https://swissmodel.expasy.org/project/uJTPsA/view"
+}

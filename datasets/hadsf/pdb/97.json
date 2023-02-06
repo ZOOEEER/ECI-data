@@ -1,0 +1,477 @@
+{
+    "project_id": "bGrRwA",
+    "target_sequences": [
+        "MEENNLFRDVKAIFFDFDNTLVSFDEVEDNALHMVAKDIYNFVKDNYSSEISQDKITELVISRAKKMNEDGIYDRKSWWKSVLDQLNVSAESEELYQWTQLYWSIASQNTPYEDALDLLEYLKKKGFRLGIITNSDGEGGDKRLRLSRFPLLHYFNIIVIGGENNIKPKPDLQPFIISCEKFGLFSSQCLMIGDDPIKDCLAAKKAGLKSILVDRKNKVKFAELYADYVVNNLREVEELF"
+    ],
+    "status": "COMPLETED",
+    "message": "running HHblits against SMTL\nreusing cached query alignment\npredicting residue burial status with ACCpro\nsearching PDB profile database with previously built query profile\nrunning BLAST against SMTL\nextracting distance constraints from 1126 templates\nfiltering list of templates\nstructurally superpose templates\npredicting oligomeric state conservation\nselect templates for modelling\nbuilding model 1\nassessing model quality of model 1 with QMEAN\n",
+    "date_created": "2023-02-06T07:43:21.019690Z",
+    "models": [
+        {
+            "built_with": "ProMod3 3.2.1",
+            "coverage": 0.8958333134651184,
+            "excluded_ligands": [
+                {
+                    "description": "D-Mannitol-1-phosphate",
+                    "ligands": [
+                        {
+                            "exclusion_reason": "Binding site not conserved.",
+                            "number": "14"
+                        },
+                        {
+                            "exclusion_reason": "Binding site not conserved.",
+                            "number": "23"
+                        }
+                    ],
+                    "name": "44H"
+                },
+                {
+                    "description": "ACETATE ION",
+                    "ligands": [
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "17"
+                        }
+                    ],
+                    "name": "ACT"
+                },
+                {
+                    "description": "CHLORIDE ION",
+                    "ligands": [
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "9"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "10"
+                        },
+                        {
+                            "exclusion_reason": "Not in contact with model.",
+                            "number": "11"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "12"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "19"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "20"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "21"
+                        }
+                    ],
+                    "name": "CL"
+                },
+                {
+                    "description": "1,2-ETHANEDIOL",
+                    "ligands": [
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "1"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "2"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "3"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "4"
+                        }
+                    ],
+                    "name": "EDO"
+                },
+                {
+                    "description": "4-(2-HYDROXYETHYL)-1-PIPERAZINE ETHANESULFONIC ACID",
+                    "ligands": [
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "5"
+                        }
+                    ],
+                    "name": "EPE"
+                },
+                {
+                    "description": "GLYCEROL",
+                    "ligands": [
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "16"
+                        }
+                    ],
+                    "name": "GOL"
+                },
+                {
+                    "description": "SODIUM ION",
+                    "ligands": [
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "13"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "22"
+                        }
+                    ],
+                    "name": "NA"
+                },
+                {
+                    "description": "TETRAETHYLENE GLYCOL",
+                    "ligands": [
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "15"
+                        }
+                    ],
+                    "name": "PG4"
+                },
+                {
+                    "description": "SULFATE ION",
+                    "ligands": [
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "6"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "7"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "8"
+                        },
+                        {
+                            "exclusion_reason": "Not biologically relevant.",
+                            "number": "18"
+                        }
+                    ],
+                    "name": "SO4"
+                }
+            ],
+            "gmqe": 0.5629204728440014,
+            "included_ligands": [],
+            "json_version": "0.1",
+            "major_issues": null,
+            "model_id": "01",
+            "oligo_based_on": "prediction",
+            "oligo_state": "monomer",
+            "pdb_release": "2023-01-27",
+            "qmean_global": {
+                "acc_agreement_norm_score": 0.5569620253164557,
+                "acc_agreement_z_score": -1.137764765768476,
+                "avg_local_score": 0.56110739598602,
+                "avg_local_score_error": 0.054,
+                "cbeta_norm_score": 0.0012396421680406949,
+                "cbeta_z_score": -3.5699136839922287,
+                "interaction_norm_score": -0.01413852040644122,
+                "interaction_z_score": -2.0073669599819675,
+                "packing_norm_score": -0.3221518964497353,
+                "packing_z_score": -0.8279750684066202,
+                "qmean4_norm_score": 0.6155066637158335,
+                "qmean4_z_score": -3.9761228844055285,
+                "qmean6_norm_score": 0.5865841736205425,
+                "qmean6_z_score": -4.12470140331089,
+                "ss_agreement_norm_score": 0.4264225651513007,
+                "ss_agreement_z_score": -1.7448350301104472,
+                "torsion_norm_score": 0.024634972218695886,
+                "torsion_z_score": -3.0912572383216417
+            },
+            "sequence_identity": 17.20930290222168,
+            "sequence_similarity": 0.2877520024776459,
+            "smtl_version": "2023-02-01",
+            "status": "COMPLETED",
+            "targets": [
+                {
+                    "model_chains": [
+                        {
+                            "dssp": "--CEETTEECSEEEECSBTTTBCCHHHHHHHHHHHHHHHCBCTTTCCBCCCCHHHHHHHTTCBSSCSTTTTCSCCCBHHHHHHHHHCTTCCHHHHHHHTTHHHHCGGGGCBCTTHHHHHHHHHHTTCEEEEECSSCTTSTTSHHHHHHTTCGGGCSEEECSGGGTTCCTTSSHHHHHHHHHHTCCGGGEEEEECSTTHHHHHHHHTTCEEEECCSSSCCCTHHHHCSEECSSHHHHHTC",
+                            "id": "A",
+                            "qmean": [
+                                null,
+                                null,
+                                0.46,
+                                0.39,
+                                0.5,
+                                0.45,
+                                0.3,
+                                0.44,
+                                0.56,
+                                0.63,
+                                0.64,
+                                0.71,
+                                0.69,
+                                0.69,
+                                0.71,
+                                0.69,
+                                0.66,
+                                0.6,
+                                0.56,
+                                0.66,
+                                0.66,
+                                0.64,
+                                0.6,
+                                0.53,
+                                0.54,
+                                0.56,
+                                0.62,
+                                0.57,
+                                0.63,
+                                0.63,
+                                0.69,
+                                0.64,
+                                0.56,
+                                0.58,
+                                0.63,
+                                0.61,
+                                0.49,
+                                0.5,
+                                0.47,
+                                0.43,
+                                0.32,
+                                0.26,
+                                0.26,
+                                0.3,
+                                0.2,
+                                0.21,
+                                0.2,
+                                0.42,
+                                0.45,
+                                0.52,
+                                0.59,
+                                0.62,
+                                0.6,
+                                0.61,
+                                0.61,
+                                0.62,
+                                0.59,
+                                0.53,
+                                0.53,
+                                0.49,
+                                0.44,
+                                0.47,
+                                0.46,
+                                0.47,
+                                0.45,
+                                0.33,
+                                0.38,
+                                0.33,
+                                0.35,
+                                0.3,
+                                0.28,
+                                0.28,
+                                0.24,
+                                0.36,
+                                0.27,
+                                0.29,
+                                0.43,
+                                0.41,
+                                0.38,
+                                0.43,
+                                0.5,
+                                0.54,
+                                0.47,
+                                0.48,
+                                0.49,
+                                0.48,
+                                0.44,
+                                0.43,
+                                0.44,
+                                0.5,
+                                0.51,
+                                0.55,
+                                0.55,
+                                0.57,
+                                0.6,
+                                0.57,
+                                0.59,
+                                0.51,
+                                0.55,
+                                0.49,
+                                0.49,
+                                0.45,
+                                0.43,
+                                0.47,
+                                0.47,
+                                0.43,
+                                0.44,
+                                0.42,
+                                0.5,
+                                0.55,
+                                0.68,
+                                0.56,
+                                0.59,
+                                0.65,
+                                0.72,
+                                0.69,
+                                0.68,
+                                0.69,
+                                0.71,
+                                0.68,
+                                0.67,
+                                0.69,
+                                0.71,
+                                0.67,
+                                0.65,
+                                0.74,
+                                0.71,
+                                0.66,
+                                0.71,
+                                0.75,
+                                0.71,
+                                0.7,
+                                0.68,
+                                0.6,
+                                0.66,
+                                0.65,
+                                0.63,
+                                0.57,
+                                0.46,
+                                0.35,
+                                0.31,
+                                0.43,
+                                0.61,
+                                0.61,
+                                0.57,
+                                0.64,
+                                0.62,
+                                0.56,
+                                0.62,
+                                0.62,
+                                0.64,
+                                0.61,
+                                0.61,
+                                0.65,
+                                0.68,
+                                0.67,
+                                0.67,
+                                0.68,
+                                0.69,
+                                0.68,
+                                0.63,
+                                0.67,
+                                0.62,
+                                0.63,
+                                0.37,
+                                0.31,
+                                0.44,
+                                0.5,
+                                0.54,
+                                0.55,
+                                0.56,
+                                0.64,
+                                0.64,
+                                0.68,
+                                0.66,
+                                0.67,
+                                0.68,
+                                0.71,
+                                0.71,
+                                0.68,
+                                0.69,
+                                0.7,
+                                0.73,
+                                0.71,
+                                0.66,
+                                0.69,
+                                0.69,
+                                0.7,
+                                0.72,
+                                0.71,
+                                0.71,
+                                0.72,
+                                0.71,
+                                0.68,
+                                0.44,
+                                0.52,
+                                0.44,
+                                0.5,
+                                0.59,
+                                0.63,
+                                0.62,
+                                0.65,
+                                0.68,
+                                0.64,
+                                0.63,
+                                0.69,
+                                0.71,
+                                0.68,
+                                0.68,
+                                0.68,
+                                0.7,
+                                0.68,
+                                0.68,
+                                0.62,
+                                0.52,
+                                0.56,
+                                0.5,
+                                0.51,
+                                0.43,
+                                0.39,
+                                0.32,
+                                0.51,
+                                0.45,
+                                0.38,
+                                0.5,
+                                0.69,
+                                0.66,
+                                0.67,
+                                0.71,
+                                0.71,
+                                0.65,
+                                0.65,
+                                0.63,
+                                0.57,
+                                0.64,
+                                0.68,
+                                0.56,
+                                0.51,
+                                0.54,
+                                null
+                            ],
+                            "residue_from": "3",
+                            "residue_to": "239",
+                            "templates": [
+                                {
+                                    "alignment": {
+                                        "target_sequence": "MEENNLFRDVKAIFFDFDNTLVSFDEVEDNALHMVAKDIYNFVKDNYSSEISQDKITELVISRAKKMNEDGIYDRKSWWKSVLDQLNVSAESEELYQWT-QLYWSIA--SQNTPYEDALDLLEYLKKKGFRLGIITNSDGEGGDKRLRLSRFPLLHYFNIIVIGGENNIKPKPDLQPFIISCEKFGLFSSQCLMIGDDPIKDCLAAKKAGLKSILVDRKNKVK-FAELYADYVVNNLREVEELF",
+                                        "template_sequence": "--LIFHGKPVHGAIFAMDGTMFDTERLRFQTLQQASQELI-------GQEFSHEYLMQCLGLSAT-----------TAEKLAQRLYGVDVPYKEIRKRADEMELEHIRKHGVPIKKGLVQVLERLRKSGLRMAVATSSRRAIA--EEYLINANVYKFFDVITCGDEV-EQGKPHPEIFLKAASQLHLDANQCLMFEDSE-NGLTSAHTSKGLTILLKDIKEPNDEMLEKAHFYYDQMYDFLTD-"
+                                    },
+                                    "coverage": 0.8958333134651184,
+                                    "description": "HAD hydrolase, family IA, variant 3",
+                                    "found_by": "HHblits",
+                                    "gmqe": 0.6119116544723511,
+                                    "method": "X-RAY DIFFRACTION",
+                                    "offset": 2,
+                                    "oligo_state": "monomer",
+                                    "qualified_name": "7ocs.2.A",
+                                    "resolution": 2.299999952316284,
+                                    "sequence_identity": 17.20930290222168,
+                                    "sequence_similarity": 0.2877520024776459,
+                                    "short_method": "X-ray",
+                                    "title": "Mannitol-1-phosphate bound to the phosphatase domain of the bifunctional mannitol-1-phosphate dehydrogenase/phosphatase MtlD-D16A from Acinetobacter baumannii"
+                                }
+                            ]
+                        }
+                    ],
+                    "target_sequence": "MEENNLFRDVKAIFFDFDNTLVSFDEVEDNALHMVAKDIYNFVKDNYSSEISQDKITELVISRAKKMNEDGIYDRKSWWKSVLDQLNVSAESEELYQWTQLYWSIASQNTPYEDALDLLEYLKKKGFRLGIITNSDGEGGDKRLRLSRFPLLHYFNIIVIGGENNIKPKPDLQPFIISCEKFGLFSSQCLMIGDDPIKDCLAAKKAGLKSILVDRKNKVKFAELYADYVVNNLREVEELF",
+                    "target_sequence_annotations": {
+                        "psipred": "CCCCCCCCCEEEEEEECCCCEEECCCCHHHHHHHHHHHHHHHHHHCCCCCCCHHHHHHHHHHHHHHHCCCCCCCHHHHHHHHHHHHCCCCCHHHHHHHHHHHHHHHCCCCCCCCHHHHHHHHHHCCCEEEEEECCCCCCCCHHHHHHCCCCCCCCCEEEEECCCCCCCCCCCHHHHHHHHHHCCCCCCEEEECCCCCCCCHHHHHCCCEEEEECCCCCCCCCCCCCCCCCCCHHHHHHCC"
+                    }
+                }
+            ],
+            "coordinates_url": "https://swissmodel.expasy.org/project/bGrRwA/models/01.pdb.gz"
+        }
+    ],
+    "project_title": "079d762a23b4b8ebc132b7d1a19a731d",
+    "view_url": "https://swissmodel.expasy.org/project/bGrRwA/view"
+}
