@@ -9,22 +9,26 @@ from util import util_file, util_log
 
 # sys.path.append(os.path.join(os.path.realpath(__file__), "util"))
 
-
 parser = argparse.ArgumentParser()
 parser.add_argument("-v", action="store_true", help="verbose")
 parser.add_argument("-t", action="store_true", help="test the code")
 parser.add_argument("-n", type=str, help="for a new dataset, make the dirs and files")
 parser.add_argument("-o", action="store_true", help="for an existing dataset, refresh the data by querying online server or database")
-parser.add_argument("-m", type=str, help="for an existing dataset, show the metadata")
+# parser.add_argument("-m", type=str, help="for an existing dataset, show the metadata")
 parser.add_argument("-s", action="store_true", help="make the statistic")
 parser.add_argument("-l", action="store_true", help="make the log")
 
 
-def main(dataset_names:list, online:bool, *args, **kwargs):
-    dir_clean_dataset = r".\datasets"
-    dir_raw_dataset = r".\process"
-    dir_parse_func = r".\util" # mandatory, for importmodule
-
+def main(
+    dataset_names:list, 
+    online:bool, 
+    dir_clean_dataset:str,
+    dir_raw_dataset:str,
+    dir_parse_func:str, # mandatory, for importmodule
+    *args, **kwargs
+):
+    """
+    """
     for dataset_name in dataset_names:
         paths = {}
 
@@ -53,37 +57,47 @@ def main(dataset_names:list, online:bool, *args, **kwargs):
             parse_module.online(paths, *args, **kwargs)
 
 
+
 if __name__ == "__main__":
     args = parser.parse_args()
-
 
     kwargs = {
         "verbose": args.v,
         "test": args.t,
-        "dataset_names": ["test"],
+        "dataset_names": [util_file._getfilename("test_dataset")],
         "debug": args.l,
         "online": args.o,
         "sec_sleep": 3,
+        "dir_clean_dataset": r".\datasets",
+        "dir_raw_dataset": r".\process",
+        "dir_parse_func": r".\util", # mandatory, for importmodule
     }
-    if not args.t:
-        kwargs["dataset_names"] = [args.n]
-        # dataset_names = [args.n]
 
     util_log.main(kwargs["debug"]) # the logging
 
-    main(**kwargs)
+    if args.s:
+        util_file.make_statistics(**kwargs)
 
-    # dataset_names = [
-    #     "esterase",
-    #     # "hadsf",
-    #     # "olea",
-    #     # "nitrilase",
-    #     # "phosphatase_ecoli",
-    #     # "phosphatase_scere",
-    #     # "bkace",
-    #     # "fdh_small",
-    #     # "fdh_large",
-    #     # "dehalogenase",
-    #     # "glycotransferase",
-    #     # "ired"
-    # ]
+    else:
+        if not args.t:
+            kwargs["dataset_names"] = [args.n]
+            # dataset_names = [args.n]
+
+        
+
+        main(**kwargs)
+
+        # dataset_names = [
+        #     "esterase",
+        #     # "hadsf",
+        #     # "olea",
+        #     # "nitrilase",
+        #     # "phosphatase_ecoli",
+        #     # "phosphatase_scere",
+        #     # "bkace",
+        #     # "fdh_small",
+        #     # "fdh_large",
+        #     # "dehalogenase",
+        #     # "glycotransferase",
+        #     # "ired"
+        # ]

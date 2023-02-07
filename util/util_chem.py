@@ -7,6 +7,9 @@ from collections.abc import Callable
 from typing import List, Tuple, Optional, Union
 
 import pubchempy as pcp
+from rdkit import Chem
+from rdkit.Chem import Draw
+from rdkit.Chem import AllChem
 
 
 # ##############
@@ -276,7 +279,24 @@ def query_local(
         *args, **kwargs
     )
 
+# ##############
+#
+# rdkit
+#
+# ###############
 
+def draw_reaction_pic(reaction_pic_filepath:str, smarts:str, verbose:bool=False, *args, **kwargs) -> str:
+    
+    try:
+        reaction = AllChem.ReactionFromSmarts(smarts)
+        img = Draw.ReactionToImage(reaction)
+        img.save(reaction_pic_filepath)
+        if verbose:
+            logging.info(f"Write to file:{reaction_pic_filepath}")
+    except Exception as e:
+        reaction_pic_filepath = ""
+        logging.info(f"{e}")
+    return reaction_pic_filepath
 
 
 # ##############

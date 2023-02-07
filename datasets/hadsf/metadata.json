@@ -1,6 +1,6 @@
 {
     "basic": {
-        "dataset description": "(str) A brief description of the dataset",
+        "dataset description": "Broad phosphate to broad phosphatase",
         "literature doi": "(str) doi of the literature",
         "literature field": "(enu) industrial or physiological",
         "literature goal": "(str) goal of the experiment",
@@ -10,15 +10,15 @@
         "enzyme criteria": "(str) screening criteria for proteins used for activity screens",
         "chemical family": "(str) chemical family",
         "chemical criteria": "(str) criteria for compounds used for activity screens",
-        "activity reaction": "(str) the reaction type",
+        "activity reaction": "[P:1](=[O:2])(-[O:3])(-[O:4])-[O:5]-[C:6].[O:7]>>[P:1](=[O:2])(-[O:3])(-[O:4])-[O:7].[O:7]-[C:6]",
         "activity unit": "(enu) unit of the data if any",
         "activity property": "(str) the property name to characterize activity, for example, conversion(%) ",
         "activity definition": "(str) the numerical definition of the activity from reaction time-course"
     },
-    "statistic": {
-        "number_of_chemical": "(int) calculated from the enzymes.csv file",
-        "number_of_enzyme": "(int) calculated from the chemicals.csv file",
-        "number_of_activity": "(int) number_of_chemical * number_of_enzyme"
+    "statistics": {
+        "number_of_enzyme": 216,
+        "number_of_chemical": 167,
+        "number_of_activity": 36072
     },
     "experiment": {
         "organism": "(str) source of the enzymes",

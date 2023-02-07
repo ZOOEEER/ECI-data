@@ -3,7 +3,7 @@ Deal with files and paths.
 """
 
 import os
-# import sys
+import sys
 import shutil
 import json
 import logging
@@ -12,7 +12,9 @@ from typing import List, Optional, Tuple, Union
 
 import pandas as pd
 
-# sys.path.append(os.path.realpath(__file__))
+sys.path.append(os.getcwd()) # temporary
+from . import util_chem, util_func
+
 
 # ##############
 #
@@ -22,6 +24,7 @@ import pandas as pd
 
 def _getfilename(file: str) -> str:
     return {
+        "test_dataset": "test",
         "metadata_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "metadata.json"),
         "metadata_dataset": "metadata.json",
         "parse_func_template": os.path.join(os.path.dirname(os.path.realpath(__file__)), "parse_template.py"),
@@ -33,6 +36,8 @@ def _getfilename(file: str) -> str:
         "activity": "activity.csv",
         "sdfdir": "sdf", #
         "pdbdir": "pdb", #
+        "reaction_pic_dataset": "./media/reaction/{}.png",
+        "statistics": "./statistics.csv"
     }[file]
 
 # Deal with the clean, raw dirs
@@ -164,12 +169,73 @@ def save_files(
 
     return
 
+# ##############
+#
+# Statitcs, meta
+#
+# ###############
 
+def _readmeta(metafilepath:str, *args, **kwargs) -> Union[dict, None]:
+    try:
+        with open(metafilepath, "r") as fp:
+            metadata = json.load(fp)
+    except Exception as e:
+        logging.info(f"{e}")
+        metadata = None
+    return metadata
 
+def _writemeta(metafilepath:str, meta:dict, *args, **kwargs):
+    with open(metafilepath, "w") as f:
+        f.write(json.dumps(meta, ensure_ascii=True, indent=4))
 
+def _make_statistics(dir_clean:str, *args, **kwargs):
+    enzymes, chemicals, activity = read_files(dir_clean, *args, **kwargs)
+    return {
+        "number_of_enzyme": len(enzymes),
+        "number_of_chemical": len(chemicals),
+        "number_of_activity": activity.shape[0] * activity.shape[1]
+    }
 
+def make_statistics(
+    dir_clean_dataset:str,
+    dir_raw_dataset:str,
+    dir_parse_func:str, # mandatory, for importmodule
+    verbose:bool=False,
+    *args, **kwargs
+):
+    statistics = []
+    for dataset_name in os.listdir(dir_clean_dataset):
+        if dataset_name in [_getfilename("test_dataset")]:
+            continue
+        dir_clean = os.path.join(dir_clean_dataset, dataset_name)
+        dir_meta = dir_clean
 
+        metafilepath = os.path.join(dir_meta, _getfilename("metadata_dataset").format(dataset_name))
+        meta = _readmeta(metafilepath, *args, **kwargs)
 
+        meta["statistics"] = _make_statistics(dir_clean, *args, **kwargs)
+        _writemeta(metafilepath, meta, *args, **kwargs)
+
+        reaction_pic_filepath = os.path.join(_getfilename("reaction_pic_dataset").format(dataset_name))
+
+        statistics.append([
+            dataset_name,
+            meta["basic"]["dataset description"],
+            "![{}]({})".format(dataset_name, util_chem.draw_reaction_pic(reaction_pic_filepath, meta["basic"]["activity reaction"], verbose, *args, **kwargs)),
+            *(v for k,v in meta["statistics"].items())
+        ])
+    
+    statistics_filepath = _getfilename("statistics")
+    pd.DataFrame(
+        statistics, 
+        columns = [
+            "Dataset", 
+            "Description", 
+            "Reaction", 
+            *(k for k,v in meta["statistics"].items())
+        ]).to_csv(statistics_filepath)
+    if verbose:
+        logging.info(f"Save the statistics to the file: {statistics_filepath}")
 
 # ##############
 #
@@ -215,7 +281,7 @@ def writemeta() -> None:
             "activity definition": "(str) the numerical definition of the activity from reaction time-course",
             "activity condition": "(str) The assay condition. For example ,the pH, temperature, substrate , additives and so on."
         },
-        "statistic":{
+        "statistics":{
             "number_of_chemical": "(int) calculated from the enzymes.csv file",
             "number_of_enzyme": "(int) calculated from the chemicals.csv file",
             "number_of_activity": "(int) number_of_chemical * number_of_enzyme"
@@ -242,9 +308,9 @@ def writemeta() -> None:
             "curation": "(str) the data curation process",
         }
     }
-    if not os.path.exists(_getfilename("metadata_template")):
-        with open(_getfilename("metadata_template"), "w") as f:
-            f.write(json.dumps(meta, ensure_ascii=True, indent=4))
+    metafilepath = _getfilename("metadata_template")
+    if not os.path.exists(metafilepath):
+        _writemeta(metafilepath, meta)
     return
 
 def writeparse_func() -> None:

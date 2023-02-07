@@ -1,7 +1,7 @@
 # ECI-data
 ECI stands for Enzyme-Chemical Interaction. The problem formulation is as below:
 
-![problem_formulation](media\problem_formulation.png)
+![problem_formulation](media/problem_formulation.png)
 
 **The high goal of ECI is to develop models which could use data of the activity of multiple compounds on related enzymes to enhance predictions of the activity of these compounds on the focused enzyme.** 
 
@@ -11,23 +11,7 @@ The repository contain datasets suitable for ECI tasks come from the literature 
 
 
 
-## Usage
-
-Show the meta data for one dataset.
-
-```python
-python main.py -m [dataset_name]
-```
-
-Test the codes.
-
-```
-python main.py -t [-v]
-```
-
-
-
-# File Organization
+## File Organization
 
 Refer to the `tree.txt` for details.
 
@@ -46,10 +30,12 @@ Four files are provided for each dataset.
 
 | file            | description                                                  |
 | --------------- | ------------------------------------------------------------ |
-| `enzymes.csv`   | Name, Sequence and other properties                          |
+| `enzymes.csv`   | Name, Sequence, pdb and other properties                     |
 | `chemicals.csv` | Name, SMILES, sdf file path and other properties             |
 | `activity.csv`  | raw values from literature                                   |
 | `metadata.json` | the original data collection strategy, modeling strategy, and enzyme catalysis issues to be explored |
+
+
 
 ## Metadata description
 
@@ -75,20 +61,28 @@ Here are 2 datasets now. Run the code to make the statistical table below, as th
 python main.py -s
 ```
 
-| Dataset  |                      Description                       |                  Reaction                  |  #E  |  #C  |  #A   |
-| :------: | :----------------------------------------------------: | :----------------------------------------: | :--: | :--: | :---: |
-| esterase | A broad ester library to a broad esterase collections. | ![esterase](.\media\reaction\esterase.png) | 147  |  96  | 14112 |
-|  hadsf   |                                                        |                                            | 216  | 167  | 36072 |
+| Dataset  |                       Description                       |                  Reaction                  |  #E  |  #C  |  #A   |
+| :------: | :-----------------------------------------------------: | :----------------------------------------: | :--: | :--: | :---: |
+| esterase | A broad ester library to a broad esterase  collections. | ![esterase](./media/reaction/esterase.png) | 147  |  96  | 14112 |
+|  hadsf   |          Broad phosphate to broad phosphatase           |    ![hadsf](./media/reaction/hadsf.png)    | 216  | 167  | 36072 |
+|          |                                                         |                                            |      |      |       |
+|          |                                                         |                                            |      |      |       |
 
 
 
 ## Data Curation
 
-We recommend that you install the python packages by conda. And then delete all the files in datasets directory.
+We recommend that you install the python packages by conda.
 
 ```
 conda create -n eci_data python=3.9
 conda install --yes --file requirements
+```
+
+Run the code to make a test.
+
+```
+python main.py -t [-v]
 ```
 
 For a new dataset, run the code to generate the directory and  `parse_[dataset_name].py`  and `metadata.json` files.
@@ -100,7 +94,7 @@ python main.py -n [dataset_name] [-v]
  After collecting the raw data files and editing the `parse_[dataset_name].py` file, run
 
 ```
-python main.py -n [dataset_name] [-v]
+python main.py -n [dataset_name] -o [-v]
 ```
 
 The `main.py` will call the `parse()` function in the `parse_[dataset_name].py` to curate the data. Feel free to change the code in `parse_[dataset_name].py` and output finally the desired files.

@@ -16,7 +16,7 @@
         "activity definition": "(str) the numerical definition of the activity from reaction time-course",
         "activity condition": "(str) The assay condition. For example ,the pH, temperature, substrate , additives and so on."
     },
-    "statistic": {
+    "statistics": {
         "number_of_chemical": "(int) calculated from the enzymes.csv file",
         "number_of_enzyme": "(int) calculated from the chemicals.csv file",
         "number_of_activity": "(int) number_of_chemical * number_of_enzyme"
