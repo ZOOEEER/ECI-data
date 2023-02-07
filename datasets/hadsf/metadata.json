@@ -1,19 +1,19 @@
 {
     "basic": {
         "dataset description": "Broad phosphate to broad phosphatase",
-        "literature doi": "(str) doi of the literature",
-        "literature field": "(enu) industrial or physiological",
-        "literature goal": "(str) goal of the experiment",
-        "enzyme ec": "(int) the first digit of the enzyme commission number",
-        "enzyme name": "(str) enzyme name",
-        "enzyme superfamily": "(str) superfamily of proteins",
-        "enzyme criteria": "(str) screening criteria for proteins used for activity screens",
-        "chemical family": "(str) chemical family",
-        "chemical criteria": "(str) criteria for compounds used for activity screens",
-        "activity reaction": "[P:1](=[O:2])(-[O:3])(-[O:4])-[O:5]-[C:6].[O:7]>>[P:1](=[O:2])(-[O:3])(-[O:4])-[O:7].[O:7]-[C:6]",
-        "activity unit": "(enu) unit of the data if any",
-        "activity property": "(str) the property name to characterize activity, for example, conversion(%) ",
-        "activity definition": "(str) the numerical definition of the activity from reaction time-course"
+        "literature doi": "10.1073/pnas.1423570112",
+        "literature field": "physiological",
+        "literature goal": "HADSF phosphatase function annotation",
+        "enzyme ec": 3,
+        "enzyme name": "phosphatase",
+        "enzyme superfamily": "HADSF(haloalkanoate dehalogenase superfamily)(216)",
+        "enzyme criteria": "provide a comprehensive sampling of the prokaryotic HAD phosphatase family for function prediction/validation",
+        "chemical family": "alcohol sugar monophosphate(34), acid sugar monophosphate(33), aldol sugar monophosphate(28), di and tri phosphates(20), nucleoside monophosphate and related(17), ketose sugar monophosphate(10), sugar bisphosphates(8), amino acid and related(6), amino sugars(3), easily hydrolyzed(3), phosphonate(3), disaccharides(2)",
+        "chemical criteria": "known metabolites, pNPP for low level activity, structurally related to known metabolites to define the substrate specificity and as clues to new function. Reflect the metabolism of E. coli",
+        "activity reaction": "[P:1](=[O:2])(-[O:3])(-[O:4])-[O:5]-[C:6].[O:7]>>[P:1](=[O:2])(-[O:3])(-[O:4])-[O:7].[O:5]-[C:6]",
+        "activity unit": "OD",
+        "activity property": "conversion(%) in a period",
+        "activity definition": "pH 7.5, 25°C, 5uM enzymes, 50mM HEPES, 1mM substrate concentration"
     },
     "statistics": {
         "number_of_enzyme": 216,
@@ -21,24 +21,24 @@
         "number_of_activity": 36072
     },
     "experiment": {
-        "organism": "(str) source of the enzymes",
-        "purified": "(enu) one of Purified, Raw of Cell",
-        "high throughput": "(bol) A boolean value",
-        "high throughput technology": "(str) how to achieve high-throughput assays",
-        "activity indicator": "(str) how the activity is indicated",
-        "activity instrument": "(str) instruments used for activity measurement, for example, LC-MS"
+        "organism": "pNIC28-Bsa4 vector containing the insert of interest was transformed into BL21(DE3) E. coli containing the pRIL plasmid",
+        "purified": "Purified",
+        "high throughput": "True",
+        "high throughput technology": "Biomek FX; Beckman Coulter, Evolution P3 liquid handling system",
+        "activity indicator": "use malachite-green reagent(BioMol Green (Enzo Life Sciences)) to screen via an end-point inorganic phosphate-release assay at 650 nm",
+        "activity instrument": "Microplate reader(650nm)"
     },
     "model": {
-        "type": "(enu) one of Machine Learning, Sequence Alignment, Mechanistic Factor, Correlation Analysis",
-        "description": "(str) what the model is and how the model is constructed",
-        "enzyme descriptors": "(str) descriptors of enzymes used to construct the model",
-        "chemical descriptors": "(str) descriptors of chemicals used to construct the model",
-        "activity preprocess": "(str) how the activity data is pre-processed for the model input"
+        "type": "Sequence Alignment",
+        "description": "The sequence-similarity network (SSN) previously described by the laboratories (10.1073/pnas.1423570112) was used to select targets for functional analysis. The clustering of the network leads to selection of orthologs by sampling within the clusters and selection of diverse functions by sampling across clusters. And for a balanced sample, the cap domain distribution was retained as the whole SSN sequence sets.",
+        "enzyme descriptors": "Sequence",
+        "chemical descriptors": "ROCS(rapid overlay of chemical structures (ROCS) alignment with electrostatic comparison) to analyze the similarity",
+        "activity preprocess": "0.2 OD as the threshold"
     },
     "process": {
-        "source of enzymes": "(str) where to get enzymes' information",
-        "source of chemicals": "(str) where to get chemicals' information",
-        "source of activity": "(str) where to get the activity information",
-        "curation": "(str) the data curation process"
+        "source of enzymes": "sd01.xlsx [Supplemental 2]",
+        "source of chemicals": "sd01.xlsx [Supplemental 1]",
+        "source of activity": "sd02.xlsx",
+        "curation": "Query the uniprot db for sequence; Query the pubchem for 3D structure."
     }
 }
