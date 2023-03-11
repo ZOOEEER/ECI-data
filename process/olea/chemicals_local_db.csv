@@ -1,0 +1,16 @@
+,Name,SMILES,cid,sdf,Name_db,SMILES_db,cid_db,sdf_db
+0,4-nitrophenyl 3-(4-chlorophenoxy)propanoate,O=[N+](C1=CC=C(OC(CCOC2=CC=C(Cl)C=C2)=O)C=C1)[O-],0,,,,19221006,19221006.sdf
+1,"4-nitrophenyl 3-(5-phenyl-1,3,4-oxadiazol-2-yl)propanoate",O=C(OC1=CC=C([N+]([O-])=O)C=C1)CCC2=NN=C(C3=CC=CC=C3)O2,0,,,,,1.sdf
+2,4-nitrophenyl benzoate,C1=CC=C(C=C1)C(=O)OC2=CC=C(C=C2)[N+](=O)[O-],70396,70396.sdf,,,,
+3,4-nitrophenyl pivalate,O=[N+](C1=CC=C(OC(C(C)(C)C)=O)C=C1)[O-],77859,77859.sdf,,,,
+4,4-nitrophenyl 7-phenylheptanoate,O=[N+](C1=CC=C(OC(CCCCCCC2=CC=CC=C2)=O)C=C1)[O-],68668202,68668202.sdf,,,,
+5,"4-nitrophenyl 2,2-dimethylhexanoate",CCCCC(C)(C)C(OC1=CC=C([N+]([O-])=O)C=C1)=O,0,,,,,5.sdf
+6,4-nitrophenyl hept-6-ynoate,O=[N+](C1=CC=C(OC(CCCCC#C)=O)C=C1)[O-],0,,,,,6.sdf
+7,4-nitrophenyl 4-cyclopentylbutan-2-one,O=C(CCC1CCCC1)CC2=CC=C([N+]([O-])=O)C=C2,61078590,61078590.sdf,,,,
+8,4-nitrophenyl hexanoate,CCCCCC(OC1=CC=C([N+]([O-])=O)C=C1)=O,567162,567162.sdf,,,,
+9,4-nitrophenyl 2-(2-butoxyethoxy)acetate,O=C(OC1=CC=C([N+]([O-])=O)C=C1)COCCOCCCC,69125108,69125108.sdf,,,,
+10,"4-nitrophenyl 5-((3aS,4S,6aR)-2-oxohexahydro-1H-thieno[3,4-d]imidazol-4-yl)pentanoate",O=[N+](C1=CC=C(OC(CCCC[C@H]2[C@]([H])([C@]([H])(CS2)N3)NC3=O)=O)C=C1)[O-],83848,83848.sdf,,,,
+11,4-nitrophenyl heptanoate,CCCCCCC(OC1=CC=C([N+]([O-])=O)C=C1)=O,14608157,14608157.sdf,,,,
+12,4-nitrophenyl 6-azidohexanoate,O=C(OC1=CC=C([N+]([O-])=O)C=C1)CCCCCN=[N+]=[N-],145448965,145448965.sdf,,,,
+13,4-nitrophenyl decanoate,CCCCCCCCCC(OC1=CC=C([N+]([O-])=O)C=C1)=O,4427708,4427708.sdf,,,,
+14,4-nitrophenyl dodecanoate,O=[N+](C1=CC=C(OC(CCCCCCCCCCC)=O)C=C1)[O-],74778,74778.sdf,,,,

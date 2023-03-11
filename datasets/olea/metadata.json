@@ -1,0 +1,45 @@
+{
+    "basic": {
+        "dataset description": "broad pNP substrate to broad OleA proteins",
+        "literature doi": "10.1093/synbio/ysaa004",
+        "literature field": "industrial",
+        "literature goal": "gain a deeper understanding of substrate scope within the OleA family",
+        "enzyme ec": "3",
+        "enzyme name": "OleA family",
+        "enzyme superfamily": "thiolase enzymes",
+        "enzyme criteria": "sequences from 7 different phyla and 68 different bacterial genera",
+        "chemical family": "p-nitrophenyl ester",
+        "chemical criteria": "we selected 15 pNPs that spanned a wide range of chain lengths, heteroatomic composition and functional groups",
+        "activity reaction": "[C:1](=[O:2])-[O:3]-[C:4]1C=CC(=CC=1)N(O)=O.[S:5]>>[C:1](=[O:2])-[S:5].[O:3]-[C:4]1C=CC(=CC=1)N(O)=O",
+        "activity unit": "nmol p-nitrophenolate/OD 1.0/h",
+        "activity property": "concentration of product",
+        "activity definition": "slopes for all overlapping 15 min intervals over the course of the first 45 min of each reaction. Then absorbance values for each plate were converted to nmol p-nitrophenolate using p-nitrophenolate standard curves run in parallel on the same plate",
+        "activity condition": "cells were normalized to an optical density of 0.1 per 200 uL of cells in 50 mM Tris-HCl. 37C, the substrate concentration up to 200 uM."
+    },
+    "statistics": {
+        "number_of_enzyme": 73,
+        "number_of_chemical": 15,
+        "number_of_activity": 1095
+    },
+    "experiment": {
+        "organism": "T7 Express Competent Escherichia coli cells",
+        "purified": "Cell",
+        "high throughput": "True",
+        "high throughput technology": "Absorbance was read in 96-well clear bottom plates (Genesee Scientific) every minute for 60 min at 410 nm and 37C using a SpectraMax Plus 384 microplate reader (Molecular Devices). All 73 enzymes were tested with 15 pNP substrates, first with technical duplicates from the same induction batch, and then in biological triplicates with three independently grown cultures for all of the active enzyme-substrate pairs.",
+        "activity indicator": "product absorbance at 410 nm",
+        "activity instrument": "a SpectraMax Plus 384 microplate reader"
+    },
+    "model": {
+        "type": "Machine Learning",
+        "description": "For classification, random forest, naive Bayes and feedforward neural networks. For regression, random forest, elastic net and multivariate adaptive regression splines.",
+        "enzyme descriptors": "DECIPHER, a structure-based aligner was used to align each of the 73 OleA sequences with the crystal structure of X. campestris. Each amino acid in the 12A radius was encoded as a vector of principal components of its physicochemical properties as described by Atchley et al. (Proc. Natl. Acad. Sci. USA, 102, 6395-6400). Each of the 84 amino acids within a 12A sphere were encoded by four indices corresponding to polarity, molecular volume, secondary structure and electrostatic charge. Global protein properties used as features including instability index, isoelectric point, molecular weight and Kyte-Doolittle hydrophobicity index were calculated using the Peptides package in R.",
+        "chemical descriptors": "153 chemical properties were calculated using the Rcpi and ChemmineR packages in R and then PCA was conducted to draw the first 7 principal components.",
+        "activity preprocess": "Activity to 0/1 indicator"
+    },
+    "process": {
+        "source of enzymes": "Supplementary_Table_S2.csv, 73_OleA_JGI_unaligned.fasta",
+        "source of chemicals": "15_pNPs_chemical_properties.csv",
+        "source of activity": "20191218_all_cmpnds_avg_log_slopes_for_modeling.csv",
+        "curation": "Combine the sequences information from Supplementary_Table_S2 with the fasta file. Fetch the structure from Swiss-Model web server. Download the sdf from the Pubchem database."
+    }
+}

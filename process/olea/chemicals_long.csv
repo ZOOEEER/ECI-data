@@ -1,0 +1,16 @@
+,cmpnd_abbrev,Name,SMILES,molecular_weight,num_atoms,num_atoms_longest_chain,num_aromatic_atoms,num_atoms_longest_aliphatic_chain,ALogP,ALogp2,MLogP,XLogP,cid,molecular_formula,sdf
+0,ClPh propionate,4-nitrophenyl 3-(4-chlorophenoxy)propanoate,O=[N+](C1=CC=C(OC(CCOC2=CC=C(Cl)C=C2)=O)C=C1)[O-],321.71248,34,5,12,3,4.9833,24.83327889,2.34,3.878,0,,19221006.sdf
+1,oxadiazole,"4-nitrophenyl 3-(5-phenyl-1,3,4-oxadiazol-2-yl)propanoate",O=C(OC1=CC=C([N+]([O-])=O)C=C1)CCC2=NN=C(C3=CC=CC=C3)O2,339.30222,38,4,17,3,4.2283,17.87852089,2.45,4.277,0,,1.sdf
+2,benzoate,4-nitrophenyl benzoate,C1=CC=C(C=C1)C(=O)OC2=CC=C(C=C2)[N+](=O)[O-],243.21486,27,3,12,0,3.9077,15.27011929,2.34,3.416,70396,C13H9NO4,70396.sdf
+3,TMA,4-nitrophenyl pivalate,O=[N+](C1=CC=C(OC(C(C)(C)C)=O)C=C1)[O-],223.22522,29,4,6,3,3.8626,14.91967876,2.12,2.446,77859,C11H13NO4,77859.sdf
+4,7Ph heptanoate,4-nitrophenyl 7-phenylheptanoate,O=[N+](C1=CC=C(OC(CCCCCCC2=CC=CC=C2)=O)C=C1)[O-],327.37434,45,8,12,7,2.9258,8.56030564,3.0,5.673,68668202,C19H21NO4,68668202.sdf
+5,dimethyl,"4-nitrophenyl 2,2-dimethylhexanoate",CCCCC(C)(C)C(OC1=CC=C([N+]([O-])=O)C=C1)=O,265.30496,38,7,6,6,2.7583,7.60821889,2.45,4.153,0,,5.sdf
+6,heptynoate,4-nitrophenyl hept-6-ynoate,O=[N+](C1=CC=C(OC(CCCCC#C)=O)C=C1)[O-],247.24662,31,8,6,7,2.5925,6.72105625,2.34,3.093,0,,6.sdf
+7,cyclopentyl,4-nitrophenyl 4-cyclopentylbutan-2-one,O=C(CCC1CCCC1)CC2=CC=C([N+]([O-])=O)C=C2,261.31626,38,4,6,4,2.1437,4.59544969,2.45,4.396,61078590,C15H19NO3,61078590.sdf
+8,hexanoate,4-nitrophenyl hexanoate,CCCCCC(OC1=CC=C([N+]([O-])=O)C=C1)=O,237.2518,32,7,6,6,1.5285,2.33631225,2.23,3.659,567162,C12H15NO4,567162.sdf
+9,butoxy,4-nitrophenyl 2-(2-butoxyethoxy)acetate,O=C(OC1=CC=C([N+]([O-])=O)C=C1)COCCOCCCC,297.30376,40,11,6,4,1.3065,1.70694225,2.23,2.341,69125108,C14H19NO6,69125108.sdf
+10,biotin,"4-nitrophenyl 5-((3aS,4S,6aR)-2-oxohexahydro-1H-thieno[3,4-d]imidazol-4-yl)pentanoate",O=[N+](C1=CC=C(OC(CCCC[C@H]2[C@]([H])([C@]([H])(CS2)N3)NC3=O)=O)C=C1)[O-],365.40416,44,6,6,5,1.3005,1.69130025,2.23,2.242,83848,C16H19N3O5S,83848.sdf
+11,heptanoate,4-nitrophenyl heptanoate,CCCCCCC(OC1=CC=C([N+]([O-])=O)C=C1)=O,251.27838,35,8,6,7,1.2405,1.53884025,2.34,4.228,14608157,C13H17NO4,14608157.sdf
+12,azido,4-nitrophenyl 6-azidohexanoate,O=C(OC1=CC=C([N+]([O-])=O)C=C1)CCCCCN=[N+]=[N-],278.26396,34,10,6,6,-1.2019,1.44456361,1.9,2.731,145448965,C12H14N4O4,145448965.sdf
+13,decanoate,4-nitrophenyl decanoate,CCCCCCCCCC(OC1=CC=C([N+]([O-])=O)C=C1)=O,293.35812,44,11,6,10,0.3765,0.14175225,2.67,5.935,4427708,C16H23NO4,4427708.sdf
+14,dodecanoate,4-nitrophenyl dodecanoate,O=[N+](C1=CC=C(OC(CCCCCCCCCCC)=O)C=C1)[O-],321.41128,50,13,6,12,-0.1995,0.03980025,2.89,7.073,74778,C18H27NO4,74778.sdf
