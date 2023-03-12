@@ -65,7 +65,7 @@ python main.py -s
 | :------: | :-----------------------------------------------------: | :----------------------------------------: | :--: | :--: | :---: |
 | esterase | A broad ester library to a broad esterase  collections. | ![esterase](./media/reaction/esterase.png) | 147  |  96  | 14112 |
 |  hadsf   |          Broad phosphate to broad phosphatase           |    ![hadsf](./media/reaction/hadsf.png)    | 216  | 167  | 36072 |
-|          |                                                         |                                            |      |      |       |
+|   olea   |       broad pNP substrate to broad OleA proteins        |    ![hadsf](./media/reaction/olea.png)     |  73  |  15  | 1095  |
 |          |                                                         |                                            |      |      |       |
 
 
@@ -94,15 +94,15 @@ python main.py -n [dataset_name] [-v]
  After collecting the raw data files and editing the `parse_[dataset_name].py` file, run
 
 ```
-python main.py -n [dataset_name] -o [-v]
+python main.py -n [dataset_name][-v]
 ```
 
-The `main.py` will call the `parse()` function in the `parse_[dataset_name].py` to curate the data. Feel free to change the code in `parse_[dataset_name].py` and output finally the desired files.
+The `main.py` will call the `parse()` function in the `parse_[dataset_name].py` to curate the data. Feel free to change the code in `parse_[dataset_name].py` and output finally the desired files and use `dev.ipynb` file in the dir to test codes.
 
 The operation of accessing the online server, such as submitting a task to Swiss-model, needs to wait for a period of time before accessing it to obtain content. Run the following command to update the table information and download files.
 
 ```python
-python main.py -o [dataset_name] [-v]
+python main.py -n [dataset_name] -o [-v]
 ```
 
 As a text file, one could edit `metadata.json` at any moment.
