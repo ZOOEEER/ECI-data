@@ -13,8 +13,11 @@ from typing import List, Optional, Tuple, Union
 import pandas as pd
 
 sys.path.append(os.getcwd()) # temporary
-from . import util_chem, util_func
-# import util_chem, util_func
+try:
+    from . import util_chem, util_func
+except ImportError:
+    import util_chem, util_func
+
 
 
 # ##############

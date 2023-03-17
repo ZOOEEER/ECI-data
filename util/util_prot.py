@@ -10,8 +10,10 @@ import pandas as pd
 from typing import List, Tuple, Optional, Union
 
 sys.path.append(os.getcwd()) # temporary
-from . import util_chem, util_func
-# import util_chem, util_func
+try:
+    from . import util_chem, util_func
+except ImportError:
+    import util_chem, util_func
 
 #########
 #

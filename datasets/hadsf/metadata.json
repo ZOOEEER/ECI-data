@@ -13,7 +13,7 @@
         "activity reaction": "[P:1](=[O:2])(-[O:3])(-[O:4])-[O:5]-[C:6].[O:7]>>[P:1](=[O:2])(-[O:3])(-[O:4])-[O:7].[O:5]-[C:6]",
         "activity unit": "OD",
         "activity property": "conversion(%) in a period",
-        "activity definition": "pH 7.5, 25\u63b3C, 5uM enzymes, 50mM HEPES, 1mM substrate concentration"
+        "activity definition": "pH 7.5, 25C, 5uM enzymes, 50mM HEPES, 1mM substrate concentration"
     },
     "statistics": {
         "number_of_enzyme": 216,

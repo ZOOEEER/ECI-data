@@ -1,0 +1,45 @@
+{
+    "basic": {
+        "dataset description": "12 bacterial nitrilases vs. 20 nitriles",
+        "literature doi": "10.1002/prot.26019",
+        "literature field": "industrial",
+        "literature goal": "Exploring the relationship between the source of nitrilase and its substrate specificity and stereoselectivity",
+        "enzyme ec": "3",
+        "enzyme name": "nitrilase",
+        "enzyme superfamily": "-",
+        "enzyme criteria": "Nine enzymes were selected from 137 nitrilases from three clades distinguished by substrate specificity and stereoselectivity, and two putative enzymes were selected based on sequence similarity, Nit6803 from Synechocystis sp. PCC6803 (PDB entry 3WUY) was chosen as a structural template",
+        "chemical family": "nitriles",
+        "chemical criteria": "A subset of five aliphatic, nine aromatic, and six arylaliphatic nitriles were chosen from the chemical library of Chem Commun. 2015",
+        "activity reaction": "[C:1]-[C:2]#[N:3].[O:4].[O:5]>>[C:1]-[C:2](=[O:4])-[O:5].[N:3]",
+        "activity unit": "mmol/L",
+        "activity property": "conversion in a period(%)",
+        "activity definition": "Ammonium ion concentration after incubation at room temperature for 18 hours",
+        "activity condition": "in 10uL of potassium phosphate buffer (pH 7.2), the enzyme concentration has two dilutions of 50% and 25%, add 1uL of nitrile substrate, 18 hours, room temperature"
+    },
+    "statistics": {
+        "number_of_enzyme": 12,
+        "number_of_chemical": 20,
+        "number_of_activity": 240
+    },
+    "experiment": {
+        "organism": "expression in E. coli and were cloned into the pet22(b) vector at the Nde-Sal site",
+        "purified": "Raw",
+        "high throughput": "True",
+        "high throughput technology": "Opentrons OT-2 Liquid Handling Robotics",
+        "activity indicator": "the chromogenic reaction between o-phthalaldehyde (OPA, 1) and ammonia under acid-catalysed conditions",
+        "activity instrument": "Absorbance at 675 nm was measured in a Perkin Elmer 2300 spectrophotometer."
+    },
+    "model": {
+        "type": "Machine Learning",
+        "description": "Test four ML models: Random Forests (RF) and Gradient Boosted Decision Trees (GBDT), as well as kernel-based methods, Support Vector Machines (SVM),  and Logistic Regression (LR). Test some sampling techniques",
+        "enzyme descriptors": "Energy terms evaluated using Rosetta ligand docking; Protein active site descriptors calculated using ProtDcal",
+        "chemical descriptors": "Charge and energy terms calculated using Gaussian; Classical 2D and 3D physicochemical descriptors calculated using MOE",
+        "activity preprocess": "The final amine concentration greater than 2mM is considered active"
+    },
+    "process": {
+        "source of enzymes": "Table S1 provides the sequence of enzymes",
+        "source of chemicals": "Figure S1 provides the molecular formula of chemicals",
+        "source of activity": "nitrilase_descriptors.xlsx",
+        "curation": "Query the pubchem for 3D structure."
+    }
+}

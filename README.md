@@ -55,18 +55,18 @@ The entries of meta data could be divided into five categories.
 
 ## Datasets
 
-Here are 2 datasets now. Run the code to make the statistical table below, as the `statistic.csv` file.
+Here are 4 datasets now. Run the code to make the statistical table below, as the `statistic.csv` file.
 
 ```
 python main.py -s
 ```
 
-| Dataset  |                       Description                       |                  Reaction                  |  #E  |  #C  |  #A   |
-| :------: | :-----------------------------------------------------: | :----------------------------------------: | :--: | :--: | :---: |
-| esterase | A broad ester library to a broad esterase  collections. | ![esterase](./media/reaction/esterase.png) | 147  |  96  | 14112 |
-|  hadsf   |          Broad phosphate to broad phosphatase           |    ![hadsf](./media/reaction/hadsf.png)    | 216  | 167  | 36072 |
-|   olea   |       broad pNP substrate to broad OleA proteins        |    ![hadsf](./media/reaction/olea.png)     |  73  |  15  | 1095  |
-|          |                                                         |                                            |      |      |       |
+|  Dataset  |                       Description                       |                   Reaction                   |  #E  |  #C  |  #A   |
+| :-------: | :-----------------------------------------------------: | :------------------------------------------: | :--: | :--: | :---: |
+| esterase  | A broad ester library to a broad esterase  collections. |  ![esterase](./media/reaction/esterase.png)  | 147  |  96  | 14112 |
+|   hadsf   |          Broad phosphate to broad phosphatase           |     ![hadsf](./media/reaction/hadsf.png)     | 216  | 167  | 36072 |
+|   olea    |       broad pNP substrate to broad OleA proteins        |      ![olea](./media/reaction/olea.png)      |  73  |  15  | 1095  |
+| nitrilase |         12 bacterial nitrilases vs. 20 nitriles         | ![nitrilase](./media/reaction/nitrilase.png) |  12  |  20  |  240  |
 
 
 
