@@ -29,7 +29,7 @@ def parse(paths, test:bool = False, *args, **kwargs) -> None:
     # sheet_names = ["neu25", "neu50"]
     activity_table = pd.read_excel(
         os.path.join(paths["raw"], "nitrilase_descriptors.xlsx"),
-        sheet_name="neu25"
+        sheet_name="neu50"
     )
     
     # make activity, enzymes["Name", "Sequence"], chemicals["Name", "SMILES", ("cid", "sdf")]

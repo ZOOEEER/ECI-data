@@ -1,0 +1,45 @@
+{
+    "basic": {
+        "dataset description": "DUF849 Pfam family beta-ketoacid lyase activity targeting beta-ketoacids",
+        "literature doi": "10.1038/nchembio.1387",
+        "literature field": "physiological",
+        "literature goal": "Taking the DUF849 family and beta-ketoacid lyase activity as an example, from the general reaction template, activity experiments and structural data, perform functional annotation on enzyme families with unknown functions, and explore the physiological significance of different substrate specificities",
+        "enzyme ec": "2",
+        "enzyme name": "beta-ketoacid lyase",
+        "enzyme superfamily": "DUF849",
+        "enzyme criteria": "By integrating the results of sequence similarity, phylogenetic tree, genome environment and active site clustering, select representative protein sequences, try to express and measure activity",
+        "chemical family": "beta-ketoacids",
+        "chemical criteria": "Seventeen candidate substrates (i.e., beta-ketoacids or beta-amino or beta-hydroxy acids that could serve as possible precursors) suitable for this general reaction were selected from metabolic databases (KEGG and MetaCyc databases) and commercial resources (e-molecule database), covering a wide range of compounds.",
+        "activity reaction": "[*:1]-[C:2](=[O:3])-C-C(=O)-O.[C:8]-[C:9](=[O:10])-S-C>>[*:1]-[C:2](=[O:3])-S-C.[C:8]-[C:9](=[O:10])-C-C(=O)-O",
+        "activity unit": "-",
+        "activity property": "specific activity",
+        "activity definition": "The rate of the forward reaction is detected by the formation of acetoacetate; the rate of the reverse reaction is detected by the formation of acetyl-CoA. Enzyme activity is obtained by detecting the kinetic curve of the reaction.",
+        "activity condition": "The temperature is 25 degrees, and the reaction volume is 70uL in a 384-well plate. The formation of acetoacetate was assayed in 50 mM Tris-HCl pH 7.5 containing 300 uM NADH, 250 uM acetyl-CoA, 0.035 U beta-hydroxybutyrate dehydrogenase, 0.5 ug of cell lysate proteins and 1 mM of substrate. The formation of acetyl-CoA was assayed in 50 mM Tris-HCl, pH 7.5, containing 400 uM DTNB, 200 uM oxaloacetate, 1 mM acetoacetate, 0.1 U citrate synthase From porcine heart, 0.5 ug of cell lysate proteins and 250 uM of substrate."
+    },
+    "statistics": {
+        "number_of_enzyme": 163,
+        "number_of_chemical": 17,
+        "number_of_activity": 2771
+    },
+    "experiment": {
+        "organism": "the modified pET22b(+) vector was transformed into E. coli BL21 DE3 pLysE (Invitrogen). Transformed cells were grown in 96-well plates (HT96 BL21(DE3).",
+        "purified": "Raw",
+        "high throughput": true,
+        "high throughput technology": "-",
+        "activity indicator": "DTNB was used to detect the formation of thioester (HS-CoA) with an absorption wavelength of 412 nm. A cascade of enzymatic reactions involving NADH was used to detect the formation of acetoacetate with an absorption wavelength of 340 nm.",
+        "activity instrument": "SpectraMax Plus384 absorbance microplate reader (Molecular Devices)"
+    },
+    "model": {
+        "type": "Sequence Alignment",
+        "description": "Integrated protein sequence similarity and phylogenetic analysis, as well as two new methods, genomic background and active site modeling and clustering (ASMC) to cluster proteins, through cluster ensemble approach (cluster ensemble approach) Information integration was performed for the selection of representative proteins. Using homology modeling and molecular docking to identify amino acid residues important for activity and specificity-determining residues, a pattern of active-site amino acids was proposed to identify active and inactive proteins",
+        "enzyme descriptors": "ASMC(active sites modeling and clustering)",
+        "chemical descriptors": "Hydrophobic and Charged Properties",
+        "activity preprocess": "Due to the incomparability of measurements, measurements can be modeled as a broad uniform distribution from many possible values when a protein is active on a given substrate. Measurements are taken from a normal distribution of values centered at or near 0 when the protein is inactive on a given substrate. Use two Gaussian distributions to fit the data, and use p(active)/p(inactive)=50 as the activity threshold"
+    },
+    "process": {
+        "source of enzymes": "Get enzymes name and sequences from Supplementary Supplementary Data Set 1",
+        "source of chemicals": "Get chemicals name from Supplementary Data Set 4",
+        "source of activity": "Get Pre-process data from Supplementary Data Set 4",
+        "curation": "The compound library was constructed manually and the compound information was downloaded from pubchem. Obtain protein names and sequences from the appendix files for homology modeling. Activity data were obtained by averaging the means of all measurements."
+    }
+}
