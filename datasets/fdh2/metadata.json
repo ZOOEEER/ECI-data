@@ -1,0 +1,45 @@
+{
+    "basic": {
+        "dataset description": "High-throughput screening of >20000 reactions catalyzed by 87 soluble genome-mined halogenases on 62 substrates found 39 new active halogenases for selective late-stage C-H functionalization.",
+        "literature doi": "10.1021/acscentsci.9b00835",
+        "literature field": "industrial",
+        "literature goal": "family-wide activity profiling was used to obtain sequence-function information on flavin-dependent halogenases (FDHs)",
+        "enzyme ec": "1",
+        "enzyme name": "flavin-dependent halogenase",
+        "enzyme superfamily": "BLAST search using FDH RebH as query",
+        "enzyme criteria": "Enzyme sequences were clustered using sequence similarity network tools(EFI-SSN), subnetworks were constructed, representative sequences in the network were uniformly sampled, subnetworks with no representative sequences were oversampled, and 128 sequences for expression were constructed from 3975 sequences Of these sequences, 87 were successfully soluble expressed, and 39 showed activity against at least one of the 12 compounds tested.",
+        "chemical family": "indoles, anilines, phenols",
+        "chemical criteria": "Typical substrates of RebH were selected: 4 indoles, 4 anilines, and 4 phenols, which showed high reactivity in FDH-catalyzed chlorination reactions. Further screening selected 50 more challenging compounds.",
+        "activity reaction": "C1CCCCC1.[Br-].O=O>>C1CCCCC1-Br.O",
+        "activity unit": "%",
+        "activity property": "conversion(%) ",
+        "activity definition": "Conversion determined by LC-MS after 18 hours of reaction",
+        "activity condition": "For chlorination and bromination reactions, the concentration of each substance is as follows: NaX (100mM), glucose (20mM), NAD (100uM), FAD (100uM), GDH (9U/mL), MBP-RebF (2.5uM), FDH (5uM), substrate (500uM). The reaction volume is 10uL. Shake at 750 rpm for 18 hours, and the reaction temperature is room temperature."
+    },
+    "statistics": {
+        "number_of_enzyme": 38,
+        "number_of_chemical": 62,
+        "number_of_activity": 2356
+    },
+    "experiment": {
+        "organism": "Chemically-competent BL21(DE3) E. coli (Invitrogen) transformed with pGro7 were used for generation  of the expression strains.",
+        "purified": "Purified",
+        "high throughput": "True",
+        "high throughput technology": "Thermo Scientific Momentum software, 384-well plate, Thermo Scientific ALPS-3000 automated plate sealer, Thermo Scientific Spinnaker robotic arm, Hamilton Nimbus liquid handler, Agilent system equipped with a 1290 Infinity II Multisampler, a 1260 Infinity binary pump, and a 6130 single quadrupole mass spectrometer with an ESI/APPI multimode source.",
+        "activity indicator": "LC-MS",
+        "activity instrument": "LC-MS"
+    },
+    "model": {
+        "type": "Sequence Alignment",
+        "description": "Construct a sequence similarity network using known FDH substrate profiles and origin as labels. Hierarchical cluster analysis based on activity data.",
+        "enzyme descriptors": "sequence similarity",
+        "chemical descriptors": "chemical category",
+        "activity preprocess": "Transformations greater than 8% were considered active to remove false positives"
+    },
+    "process": {
+        "source of enzymes": "oc9b00835_si_005.xlsx",
+        "source of chemicals": "oc9b00835_si_002.cdx",
+        "source of activity": "oc9b00835_si_004.xlsx",
+        "curation": "The activity and enzyme information is given by csv table. And chemicals are given out in .cdx(ChemDraw) format. To do cheminformatics, first, change the format into SMILES by ChemDraw, then, query Pubchem to fetch its .sdf file. The activity of two halogens is reported here: NaCl, NaBr. The more active NaBr was used as the activity data set, and all amino acid sequences without activity were dropped."
+    }
+}
