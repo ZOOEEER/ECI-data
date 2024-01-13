@@ -9,10 +9,32 @@ from . import util_chem, util_prot, util_func, util_file
 
 def parse(paths, test:bool = False, *args, **kwargs) -> None:
     """
-    The return of parse function:
-    enzymes: (#E)
-    chemicals: (#C)
-    activity: (#E, #C)
+    The parse function is a function that encapsulates the data curation process 
+    after verifying the process for a certain data set.
+    
+    Run on the command line. It will call the parse_[dataset_name].py function:
+
+        >> python main.py -n [dataset_name] [-v]
+
+    One-Time Run functions: 
+        In current pipeline, except for the query swiss-model database to obtain the pdb structure 
+        (submit the task and wait for the task execution to obtain the result),
+        the rest are functions that only need to be run once.
+
+    paths store paths, the keys that can be used include:
+        paths["clean"]: the final dataset dir.
+        paths["raw"]: the raw dataset dir to store the original files and the cacheds files.
+        paths["sdf"]: the final chemical structure dir.
+        paths["pdb"]: the final protein structure dir.
+
+    The function needs to assert that pandas.DataFrame objects are obtained. 
+        assert np.all([c in enzymes.columns for c in ["Name", "Sequence"]])
+        assert np.all([c in chemicals.columns for c in ["Name", "SMILES", "sdf"]])
+        assert activity.shape == (enzymes.shape[0], chemicals.shape[0])
+
+    The save function is implemented by the final code:
+        util_file.save_files(paths["clean"], enzymes, chemicals, activity, *args, **kwargs)
+
     """
     enzymes = None
     chemicals = None
@@ -38,6 +60,11 @@ def parse(paths, test:bool = False, *args, **kwargs) -> None:
     return
 
 def online(paths, test:bool = False, *args, **kwargs) -> None:
+    """
+    For loop-run.
+    
+    """
+
 
     enzymes, chemicals, activity = util_file.read_files(paths["clean"], *args, **kwargs)
 
