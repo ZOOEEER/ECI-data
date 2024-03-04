@@ -144,7 +144,26 @@ def query_enzymes(
 ):
     """
     Homology Model by Swiss-Model.
-    save the results to pdb
+
+    Make sure [enzymes] has **Name** and **Sequence** columns.
+    Make sure that the Sequence column contains legal proteins.
+    (One can call unit_prot.formalize to preprocess the protein sequence).
+
+    >> First, Submit tasks:
+        
+        query_enzymes(enzymes, pdbdir = paths['pdb'], **kwargs)
+
+    First run, three new columns will be added to enzymes, namely **project_id**, **json** and **pdb**. 
+    For legal input, project_id is generated and stored in the coresponding row. For illegal input, project_id will not be generated. The latter two store the paths to the corresponding json files (project information) and pdb files (structure file). 
+
+    One can log in at https://swissmodel.expasy.org/interactive to view the running status of submitted projects.
+
+    When the projects are Completed, run it again. For the enzyme with project_id, download the corresponding pdb and json files to the folder specified by [pdbdir].
+
+    >> Secondly, download the pdb and json files:
+        
+        query_enzymes(enzymes, pdbdir = paths['pdb'], **kwargs)
+
     """
     assert "Name" in enzymes.columns
     assert "Sequence" in enzymes.columns

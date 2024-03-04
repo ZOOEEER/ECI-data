@@ -1,0 +1,45 @@
+{
+    "basic": {
+        "dataset description": "glycosyltransferases from Arabidopsis thaliana vs.  acceptors, alpha-Glucose-UDP.",
+        "literature doi": "10.1038/s41589-018-0154-9",
+        "literature field": "physiological",
+        "literature goal": "Using glycosyltransferase families from a single organism with broad substrate profile data, train transferable enzymes to other organisms",
+        "enzyme ec": "2",
+        "enzyme name": "glycosyltransferase",
+        "enzyme superfamily": "glycosyltransferase superfamily 1 (GT1)",
+        "enzyme criteria": "The initial activity of the entire family of 107 Arabidopsis GT1 enzymes was tested on the optimal sugar(UDP-D-Glucose) and the optimal receptor(Kaempferol and Aesculetin), and 54 members were identified for functional screening.",
+        "chemical family": "Sugar Donor Library(13): (i) configurational and constitutional (that is, hydroxyl replacement) variation in the glycosyl moiety of the donor; (ii) nucleobase variation in the leaving-group moiety of the donor; and (iii) nucleophile heteroatom type (O, NH, or S) and the constitution of the scaffold;Glycosyl-acceptor core structure(91): Classified by chemical type, acceptor types include Polyphenos, Coumarins, Organic Acids, Heterocyclic compounds, Aliphatics, Sugars and glycosides. Classified by nucleophile types, including Phenols, Alcohols, Carboxylic acids, Thiophenols, Anilines and Amines.",
+        "chemical criteria": "Choose the composition of the sugar donor according to the specific questions to be explored, and choose the acceptors according to the principle of diversification to probe the chemical space (molecular shape and solvent-excluded volumes), electronics (logP ranges, polarity, and lone-pair count), and reactivity (nucleophile type)",
+        "activity reaction": "Glucose-P-P-Uridine[Donor] + [Acceptor] >> P-P-Uridine + Glucose-[Acceptor]",
+        "activity unit": "unitless",
+        "activity property": "rank of conversion(%)",
+        "activity definition": "Data were ranked green (signal/noise >10), amber (signal/noise 1-10), or red (signal/noise <1) from the total-ion-count integration of the full peak",
+        "activity condition": "Reaction mixtures were composed of 93 uL reaction buffer (1 mM Tris, pH 7.8, and 50 uM MgCl2), 1 uL NDP sugar (10 mg/mL stock), 1uL aglycone (10 mg/mL stock), and 5 uL cell supernatant or purified protein (~1 mg/mL). Glycosylation reactions were incubated at 37 C overnight."
+    },
+    "statistics": {
+        "number_of_enzyme": 53,
+        "number_of_chemical": 58,
+        "number_of_activity": 3074
+    },
+    "experiment": {
+        "organism": "The Arabidopsis GT1 plasmid in pGEX-2T (as reported by Lim et al.) was transformed into the Rosetta (DE3) pLysS E. coli expression strain",
+        "purified": "Raw",
+        "high throughput": "True",
+        "high throughput technology": "Green-amber-red(GAR) HT-MS screening. Activity assays were conducted with previously reported MS methods on either a Waters Quattro Micro API (ESI-mode) or a Waters ZMD-MS (ESI-mode) instrument, each equipped with a Waters 600 HPLC System and a Waters 2700 autosampler capable of 96-well format.",
+        "activity indicator": "MS full scans (150-1,100 Da)",
+        "activity instrument": "HPLC-MS"
+    },
+    "model": {
+        "type": "Machine Learning",
+        "description": "GT-Predict.",
+        "enzyme descriptors": "A Smith-Waterman25/BLOSUM50 pairwise-alignment algorithm was implemented with the GAR scoring matrix in the GT-Predict 'PredictEnzymeInteraction' module. A weighted k-nearest-neighbor approach was used to predict substrate interactions for novel GT1 FASTA amino acid sequences to obtain weighted votes from the closest protein sequences in our dataset and to provide interaction predictions for novel sequences.",
+        "chemical descriptors": "A Decision Tree-based model was trained on various combinations of each substrate's cLogP, molecular volume, solvent accessible area, and carboxylate pKa. Additionally, structural information such as the number of hydroxyl groups or amines as well as substitution patterns on coumarin, flavonoid, or phenylpropenoid scaffolds (physicochemical parameters, calculated with Chem 3D version 16.0, are listed in Supplementary Tables 8 and 9)",
+        "activity preprocess": "(green, score of 1.0; amber, score of 0.5; red, score of 0.0)"
+    },
+    "process": {
+        "source of enzymes": "https://ora.ox.ac.uk/objects/uuid:1b174bc0-4058-4057-8db4-59872c2b6d99: ./PredictEnzymeInteraction/data/Active_enzymes_protein_sequences.txt",
+        "source of chemicals": "./AcceptorGUI/data/acceptor_interaction_data.txt",
+        "source of activity": "./AcceptorGUI/data/acceptor_interaction_data.txt",
+        "curation": "Query the Pubchem to fetch sdf. Query the Swiss-Model to get the pdb."
+    }
+}

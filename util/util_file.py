@@ -9,6 +9,9 @@ import json
 import logging
 from typing import List, Optional, Tuple, Union
 
+from Bio import SeqIO
+from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
 
 import pandas as pd
 
@@ -38,6 +41,7 @@ def _getfilename(file: str) -> str:
         "enzymes": "enzymes.csv",
         "chemicals": "chemicals.csv",
         "activity": "activity.csv",
+        "sequence": "sequences.fasta",
         "sdfdir": "sdf", #
         "pdbdir": "pdb", #
         "reaction_pic_dataset": "./media/reaction/{}.png",
@@ -148,6 +152,15 @@ def _save_file(item:pd.DataFrame, file_path:str, verbose:bool=False, *args, **kw
     # except:
     return file_path
 
+def _write_seq(enzymes:pd.DataFrame, file_path:str, verbose:bool=False, *args, **kwargs):
+    seqs = []
+    for i, row in enzymes.iterrows():
+        seqs.append(SeqRecord(Seq(row["Sequence"]), id=row["Name"], description=""))
+    SeqIO.write(seqs, file_path, "fasta")
+    if verbose:
+        logging.info(f"Make the file: {file_path}")
+    return
+
 def save_files(
     dir_clean:str, 
     enzymes:Optional[pd.DataFrame], 
@@ -171,7 +184,12 @@ def save_files(
         file_path = os.path.join(dir_clean, _getfilename(item_name))
         _save_file(item, file_path, *args, **kwargs)
 
+    file_path = os.path.join(dir_clean, _getfilename("sequence"))
+    _write_seq(enzymes, file_path, *args, **kwargs)
+
     return
+
+
 
 # ##############
 #

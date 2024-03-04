@@ -30,8 +30,8 @@ Four files are provided for each dataset.
 
 | file            | description                                                  |
 | --------------- | ------------------------------------------------------------ |
-| `enzymes.csv`   | Name, Sequence, pdb and other properties                     |
-| `chemicals.csv` | Name, SMILES, sdf file path and other properties             |
+| `enzymes.csv`   | `Name`, `Sequence`, `pdb` and other properties               |
+| `chemicals.csv` | `Name`, `SMILES`, `sdf` file path and other properties       |
 | `activity.csv`  | raw values from literature                                   |
 | `metadata.json` | the original data collection strategy, modeling strategy, and enzyme catalysis issues to be explored |
 
@@ -55,7 +55,7 @@ The entries of meta data could be divided into five categories.
 
 ## Datasets
 
-Here are 5 datasets now. Run the code to make the statistical table below, as the `statistic.csv` file.
+Here are 7 datasets now. Run the code to make the statistical table below, as the `statistic.csv` file.
 
 ```
 python main.py -s
@@ -68,6 +68,8 @@ python main.py -s
 |   olea    |          broad pNP substrate to broad OleA proteins          |      ![olea](./media/reaction/olea.png)      |  73  |  15  | 1095  |
 | nitrilase |           12 bacterial nitrilases vs. 20 nitriles            | ![nitrilase](./media/reaction/nitrilase.png) |  12  |  20  |  240  |
 |   bkace   | DUF849 Pfam family beta-ketoacid lyase activity targeting beta-ketoacids |     ![bkace](./media/reaction/bkace.png)     | 163  |  17  | 2771  |
+|   fdh2    | halogenase vs. mainly three types of compounds: indoles, anilines, phenols |      ![fdh2](./media/reaction/fdh2.png)      |  38  |  62  | 2356  |
+|    gt     | glycosyltransferases from Arabidopsis thaliana vs.  acceptors, α-Glucose-UDP |        ![gt](./media/reaction/gt.png)        |  53  |  58  | 3074  |
 
 
 
@@ -80,9 +82,15 @@ conda create -n eci_data python=3.9
 conda install --yes --file requirements
 ```
 
+Active the conda environment
+
+```python
+conda activate eci_data
+```
+
 Run the code to make a test.
 
-```
+```python
 python main.py -t [-v]
 ```
 
